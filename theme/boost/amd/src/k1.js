@@ -1,3 +1,6 @@
+/** Allow console log method */
+/* eslint no-console: 0 */
+
 export const init = () => {
 
     // Make sure Moodle loads our stuff.
@@ -23,27 +26,3 @@ export const init = () => {
     let buttonText = 'blabla';
     H5P.MyClass.trigger('buttonPressed', buttonText);
 };
-
-/**
- * @class
- * @augments H5P.EventDispatcher
- * @param {Object} displayOptions
- * @param {boolean} displayOptions.export Triggers the display of the 'Download' button
- * @param {boolean} displayOptions.copyright Triggers the display of the 'Copyright' button
- * @param {boolean} displayOptions.embed Triggers the display of the 'Embed' button
- * @param {boolean} displayOptions.icon Triggers the display of the 'H5P icon' link
-
- H5P.k1 = (function ($, EventDispatcher) {
-    "use strict";
-
-    function k1() {
-      EventDispatcher.call(this);
-    }
-
-    k1.prototype = Object.create(EventDispatcher.prototype);
-    k1.prototype.constructor = k1;
-
-    return k1;
-
-  })(H5P.jQuery, H5P.EventDispatcher);
- */
