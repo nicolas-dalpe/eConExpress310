@@ -1,28 +1,46 @@
-/** Allow console log method */
-/* eslint no-console: 0 */
-
 export const init = () => {
 
-    // Make sure Moodle loads our stuff.
-    window.console.log('k1.js is loaded.');
+	// Make sure Moodle loads our stuff.
+	window.console.log('k1.js is loaded.');
 
-    // Taken from /mod/hvp/library/js/h5p.js.
-    var H5P = window.H5P = window.H5P || {};
+	// Access iframeH5P
+	const iframeH5P = document.getElementsByClassName('h5p-iframe')[0].contentWindow.H5P;
 
-    H5P.EventDispatcher.call(this);
+	// Access iframeVideo
+	const iframeVideo = iframeH5P.instances[0].video;
 
-    H5P.ED = {};
+	// init videoInterval
+	let videoInterval;
 
-    H5P.ED.prototype = Object.create(H5P.EventDispatcher.prototype);
-    H5P.ED.prototype.constructor = H5P.ED;
+	// Check Video status
+	iframeVideo.on('stateChange', function (event) { 
+		switch (event.data) {
+			case iframeH5P.Video.ENDED:
+				window.console.log('Ended');
 
-    window.console.log(H5P.ED);
+				// clear interval
+				clearInterval(videoInterval);
+			break;
 
-    H5P.ED.on('buttonPressed', function (event) {
-        console.log('Someone pressed a button!');
-        console.log(event);
-    });
+			case iframeH5P.Video.PLAYING:
+				window.console.log('Playing');
 
-    let buttonText = 'blabla';
-    H5P.MyClass.trigger('buttonPressed', buttonText);
+				// every second, update the current time
+				videoInterval = setInterval(function() {
+					window.console.log(iframeVideo.getCurrentTime());
+				}, 1000);
+			break;
+
+			case iframeH5P.Video.PAUSED:
+				window.console.log('Paused');
+
+				// clear interval
+				clearInterval(videoInterval);
+				break;
+
+			/* case iframeH5P.Video.BUFFERING:
+				window.console.log('Wait on your slow internet connection...');
+			break; */
+		}
+	});
 };
