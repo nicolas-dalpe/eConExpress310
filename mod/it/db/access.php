@@ -25,21 +25,22 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = [
-
-    'mod/it:addinstance' => [
+$capabilities = array(
+    'mod/it:view' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => array(
+            'guest' => CAP_ALLOW,
+            'student' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        )
+    ),
+    'mod/it:addinstance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => [
-            'manager' => CAP_ALLOW,
-        ],
-    ],
-
-    'mod/it:view' => [
-        'captype' => 'view',
-        'contextlevel' => CONTEXT_MODULE,
-        'archetypes' => [
-            'manager' => CAP_ALLOW,
-        ],
-    ],
-];
+        'archetypes' => array('manager' => CAP_ALLOW),
+        'clonepermissionsfrom' => 'moodle/course:manageactivities'
+    )
+);
