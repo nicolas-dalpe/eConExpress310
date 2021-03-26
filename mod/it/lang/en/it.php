@@ -28,8 +28,20 @@ defined('MOODLE_INTERNAL') || die();
 $string['it:addinstance'] = 'Add Instance';
 $string['it:view'] = 'View Interactive Transcript Video';
 $string['modulename'] = 'H5P Interactive Transcript';
+$string['modulenameplural'] = 'H5P Interactive Transcripts';
 $string['modulename_help'] = 'Interactive Transcript for H5P Interactive video';
 $string['moduleshortname'] = 'Interactive Transcript';
 $string['pluginadministration'] = 'H5P Interactive Transcript';
 $string['pluginname'] = 'it';
 $string['pluginname'] = 'H5P Interactive Transcript';
+
+/**********************************/
+/******* Assignment form *********/
+/**********************************/
+$string['itname'] = 'Video title';
+
+/**********************************/
+/********* Capabilities ***********/
+/**********************************/
+$string['it:addinstance'] = 'Add new interactive video';
+$string['it:view'] = 'View interactive video';
