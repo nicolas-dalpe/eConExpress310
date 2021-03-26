@@ -29,7 +29,7 @@ require_once(__DIR__.'/lib.php');
 $id = optional_param('id', 0, PARAM_INT);
 
 // Activity instance id.
-$i = optional_param('i', 0, PARAM_INT);
+// $i = optional_param('i', 0, PARAM_INT);
 
 if ($id) {
     $cm = get_coursemodule_from_id('it', $id, 0, false, MUST_EXIST);
@@ -43,23 +43,58 @@ if ($id) {
     print_error(get_string('missingidandcmid', 'mod_it'));
 }
 
-require_login($course, true, $cm);
-
 $modulecontext = context_module::instance($cm->id);
 
-$event = \mod_it\event\course_module_viewed::create(array(
-    'objectid' => $moduleinstance->id,
-    'context' => $modulecontext
-));
-$event->add_record_snapshot('course', $course);
-$event->add_record_snapshot('it', $moduleinstance);
-$event->trigger();
+require_course_login($course, true, $cm);
+require_capability('mod/it:view', $modulecontext);
+
+// Verify course context.
+$h5pcm = get_coursemodule_from_id('hvp', 7);
+if (!$h5pcm) {
+    print_error('invalidcoursemodule');
+}
+
+// Set up view assets.
+require('../hvp/classes/view_assets.php');
+require('../hvp/locallib.php');
+$view    = new \mod_hvp\view_assets($h5pcm, $course);
+$content = $view->getcontent();
+$view->validatecontent();
+
+// Add H5P assets to page.
+$view->addassetstopage();
+// $view->logviewed();
 
 $PAGE->set_url('/mod/it/view.php', array('id' => $cm->id));
-$PAGE->set_title(format_string($moduleinstance->name));
+// $PAGE->set_title(format_string($moduleinstance->name));
+$PAGE->set_title('Test Interactive Transcript');
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
+echo '<div class="clearer"></div>';
+
+// Output introduction.
+if (trim(strip_tags($content['intro'], '<img>'))) {
+    echo $OUTPUT->box_start('mod_introbox', 'hvpintro');
+    echo format_module_intro('hvp', (object) array(
+        'intro'       => $content['intro'],
+        'introformat' => $content['introformat'],
+    ), $cm->id);
+    echo $OUTPUT->box_end();
+}
+
+// Print any messages.
+\mod_hvp\framework::printMessages('info', \mod_hvp\framework::messages('info'));
+\mod_hvp\framework::printMessages('error', \mod_hvp\framework::messages('error'));
+
+$view->outputview();
+
+echo '<p>';
+echo '<span id="marker_1" data-min="1" data-max="4">- Life ain\'t so great<br>- Yeah. there\'ll be dots in the mud</span>';
+echo '<span id="marker_2" data-min="4" data-max="8">- And life ain\'t Hollywood<br>- for any one of us</span>';
+echo '<span id="marker_3" data-min="8" data-max="12">- If ever you\'re in doubt.<br>- just get your wings out</span>';
+echo '<span id="marker_4" data-min="12" data-max="16">- It\'s alright. darling.<br>- get your wriggle on</span>';
+echo '</p>';
 
 echo $OUTPUT->footer();
