@@ -57,7 +57,7 @@ class mod_it_mod_form extends moodleform_mod {
 
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('name', 'itname', 'mod_it');
+        // $mform->addHelpButton('name', 'itname', 'mod_it');
 
         // Adding the standard "intro" and "introformat" fields.
         if ($CFG->branch >= 29) {
@@ -68,8 +68,8 @@ class mod_it_mod_form extends moodleform_mod {
 
         // Adding the rest of mod_it settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'itsettings', get_string('itsettings', 'mod_it'));
-        $mform->addElement('header', 'itfieldset', get_string('itfieldset', 'mod_it'));
+        // $mform->addElement('static', 'label1', 'itsettings', get_string('itsettings', 'mod_it'));
+        // $mform->addElement('header', 'itfieldset', get_string('itfieldset', 'mod_it'));
 
         // Add standard grading elements.
         $this->standard_grading_coursemodule_elements();
