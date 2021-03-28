@@ -91,8 +91,6 @@ if (trim(strip_tags($content['intro'], '<img>'))) {
 
 $view->outputview();
 
-echo "\n\n\n --->\n";
-
 // Make a PHP object with the json settings from H5P.
 $VideoContent = json_decode($content['filtered']);
 
@@ -128,7 +126,7 @@ if (file_exists($transcriptPath)) {
 
         // Start the subtitle index.
         if (intval(trim($line)) !== 0) {
-            $i = $line * 10;
+            $i = $line;
             $c[$i]['index'] = $i;
             continue;
         }
@@ -161,40 +159,31 @@ foreach ($bookmarks as $key => $value) {
 foreach ($c as $ckey => $line) {
     foreach ($bookmarks as $key => $bookmark) {
 
-            if ($bookmark['time'] <= $line['startSecond']) {
-                $c[$ckey-5] = $bookmark;
-                unset($bookmarks[$key]);
-                continue;
-            }
+        if ($bookmark['time'] <= $line['startSecond']) {
+            array_splice($c, $ckey-1, 0, array($bookmark));
+            unset($bookmarks[$key]);
+            continue;
+        }
     }
 }
+echo '<p id="subtitle">';
 
-// foreach ($bookmarks as $key => $bookmark) {
-//     foreach ($c as $ckey => $line) {
-//         $bt = $bookmark['time'];
-
-//             if ($bt <= $line['startSecond']) {
-//                 $c[$ckey-5] = $bookmark;
-//                 unset($bookmarks[$key]);
-//                 continue;
-//             }
-//     }
-// }
-var_dump($c);
-
-exit();
-
-echo '<p id="subtitle">'."\n";
-
-// foreach ($c as $key => $sub) {
-//     echo sprintf('<span data-index="%d" data-min="%d" data-max="%d">%s</span>',
-//         $sub['index'],
-//         $sub['startSecond'],
-//         $sub['endSecond'],
-//         $sub['content']
-//     );
-//     echo "\n";
-// }
+foreach ($c as $key => $sub) {
+    if (isset($c[$key]['content'])) {
+        echo sprintf('<span data-index="%d" data-min="%d" data-max="%d">%s</span>',
+            $sub['index'],
+            $sub['startSecond'],
+            $sub['endSecond'],
+            $sub['content']
+        );
+    } else {
+        echo sprintf('<br><br><span class="bookmark" data-min="%d">%s</span><br>',
+            $sub['startSecond'],
+            $sub['label']
+        );
+    }
+    echo "\n";
+}
 
 echo '</p>';
 /*
