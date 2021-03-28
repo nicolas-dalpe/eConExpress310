@@ -1,0 +1,1157 @@
+.ainst-donut-chart {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.ainst-donut-chart .slice {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ainst-donut-chart .chart-center {
+  position: absolute;
+  border-radius: 50%;
+}
+.ainst-donut-chart .chart-center span {
+  display: block;
+  text-align: center;
+}
+
+.ainst-donut-chart {
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+}
+.ainst-donut-chart .slice.one {
+  clip: rect(0 60px 30px 0);
+  background: var(--secondary);
+}
+.ainst-donut-chart .slice.two {
+  clip: rect(0 30px 60px 0);
+  background: var(--secondary);
+}
+.ainst-donut-chart .chart-center {
+  top: 12px;
+  left: 12px;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+}
+.ainst-donut-chart .chart-center span {
+  font-size: 14px;
+  line-height: 36px;
+}
+
+.ainst-donut-chart-1 .slice.one {
+  transform: rotate(93.6deg);
+}
+.ainst-donut-chart-1 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-2 .slice.one {
+  transform: rotate(97.2deg);
+}
+.ainst-donut-chart-2 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-3 .slice.one {
+  transform: rotate(100.8deg);
+}
+.ainst-donut-chart-3 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-4 .slice.one {
+  transform: rotate(104.4deg);
+}
+.ainst-donut-chart-4 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-5 .slice.one {
+  transform: rotate(108deg);
+}
+.ainst-donut-chart-5 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-6 .slice.one {
+  transform: rotate(111.6deg);
+}
+.ainst-donut-chart-6 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-7 .slice.one {
+  transform: rotate(115.2deg);
+}
+.ainst-donut-chart-7 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-8 .slice.one {
+  transform: rotate(118.8deg);
+}
+.ainst-donut-chart-8 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-9 .slice.one {
+  transform: rotate(122.4deg);
+}
+.ainst-donut-chart-9 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-10 .slice.one {
+  transform: rotate(126deg);
+}
+.ainst-donut-chart-10 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-11 .slice.one {
+  transform: rotate(129.6deg);
+}
+.ainst-donut-chart-11 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-12 .slice.one {
+  transform: rotate(133.2deg);
+}
+.ainst-donut-chart-12 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-13 .slice.one {
+  transform: rotate(136.8deg);
+}
+.ainst-donut-chart-13 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-14 .slice.one {
+  transform: rotate(140.4deg);
+}
+.ainst-donut-chart-14 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-15 .slice.one {
+  transform: rotate(144deg);
+}
+.ainst-donut-chart-15 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-16 .slice.one {
+  transform: rotate(147.6deg);
+}
+.ainst-donut-chart-16 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-17 .slice.one {
+  transform: rotate(151.2deg);
+}
+.ainst-donut-chart-17 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-18 .slice.one {
+  transform: rotate(154.8deg);
+}
+.ainst-donut-chart-18 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-19 .slice.one {
+  transform: rotate(158.4deg);
+}
+.ainst-donut-chart-19 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-20 .slice.one {
+  transform: rotate(162deg);
+}
+.ainst-donut-chart-20 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-21 .slice.one {
+  transform: rotate(165.6deg);
+}
+.ainst-donut-chart-21 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-22 .slice.one {
+  transform: rotate(169.2deg);
+}
+.ainst-donut-chart-22 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-23 .slice.one {
+  transform: rotate(172.8deg);
+}
+.ainst-donut-chart-23 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-24 .slice.one {
+  transform: rotate(176.4deg);
+}
+.ainst-donut-chart-24 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-25 .slice.one {
+  transform: rotate(180deg);
+}
+.ainst-donut-chart-25 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-26 .slice.one {
+  transform: rotate(183.6deg);
+}
+.ainst-donut-chart-26 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-27 .slice.one {
+  transform: rotate(187.2deg);
+}
+.ainst-donut-chart-27 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-28 .slice.one {
+  transform: rotate(190.8deg);
+}
+.ainst-donut-chart-28 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-29 .slice.one {
+  transform: rotate(194.4deg);
+}
+.ainst-donut-chart-29 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-30 .slice.one {
+  transform: rotate(198deg);
+}
+.ainst-donut-chart-30 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-31 .slice.one {
+  transform: rotate(201.6deg);
+}
+.ainst-donut-chart-31 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-32 .slice.one {
+  transform: rotate(205.2deg);
+}
+.ainst-donut-chart-32 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-33 .slice.one {
+  transform: rotate(208.8deg);
+}
+.ainst-donut-chart-33 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-34 .slice.one {
+  transform: rotate(212.4deg);
+}
+.ainst-donut-chart-34 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-35 .slice.one {
+  transform: rotate(216deg);
+}
+.ainst-donut-chart-35 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-36 .slice.one {
+  transform: rotate(219.6deg);
+}
+.ainst-donut-chart-36 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-37 .slice.one {
+  transform: rotate(223.2deg);
+}
+.ainst-donut-chart-37 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-38 .slice.one {
+  transform: rotate(226.8deg);
+}
+.ainst-donut-chart-38 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-39 .slice.one {
+  transform: rotate(230.4deg);
+}
+.ainst-donut-chart-39 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-40 .slice.one {
+  transform: rotate(234deg);
+}
+.ainst-donut-chart-40 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-41 .slice.one {
+  transform: rotate(237.6deg);
+}
+.ainst-donut-chart-41 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-42 .slice.one {
+  transform: rotate(241.2deg);
+}
+.ainst-donut-chart-42 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-43 .slice.one {
+  transform: rotate(244.8deg);
+}
+.ainst-donut-chart-43 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-44 .slice.one {
+  transform: rotate(248.4deg);
+}
+.ainst-donut-chart-44 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-45 .slice.one {
+  transform: rotate(252deg);
+}
+.ainst-donut-chart-45 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-46 .slice.one {
+  transform: rotate(255.6deg);
+}
+.ainst-donut-chart-46 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-47 .slice.one {
+  transform: rotate(259.2deg);
+}
+.ainst-donut-chart-47 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-48 .slice.one {
+  transform: rotate(262.8deg);
+}
+.ainst-donut-chart-48 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-49 .slice.one {
+  transform: rotate(266.4deg);
+}
+.ainst-donut-chart-49 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-50 .slice.one {
+  transform: rotate(270deg);
+}
+.ainst-donut-chart-50 .slice.two {
+  transform: rotate(0deg);
+}
+
+.ainst-donut-chart-51 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-51 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-51 .slice.two {
+  transform: rotate(183.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-52 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-52 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-52 .slice.two {
+  transform: rotate(187.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-53 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-53 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-53 .slice.two {
+  transform: rotate(190.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-54 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-54 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-54 .slice.two {
+  transform: rotate(194.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-55 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-55 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-55 .slice.two {
+  transform: rotate(198deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-56 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-56 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-56 .slice.two {
+  transform: rotate(201.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-57 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-57 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-57 .slice.two {
+  transform: rotate(205.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-58 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-58 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-58 .slice.two {
+  transform: rotate(208.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-59 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-59 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-59 .slice.two {
+  transform: rotate(212.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-60 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-60 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-60 .slice.two {
+  transform: rotate(216deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-61 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-61 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-61 .slice.two {
+  transform: rotate(219.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-62 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-62 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-62 .slice.two {
+  transform: rotate(223.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-63 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-63 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-63 .slice.two {
+  transform: rotate(226.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-64 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-64 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-64 .slice.two {
+  transform: rotate(230.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-65 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-65 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-65 .slice.two {
+  transform: rotate(234deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-66 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-66 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-66 .slice.two {
+  transform: rotate(237.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-67 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-67 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-67 .slice.two {
+  transform: rotate(241.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-68 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-68 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-68 .slice.two {
+  transform: rotate(244.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-69 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-69 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-69 .slice.two {
+  transform: rotate(248.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-70 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-70 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-70 .slice.two {
+  transform: rotate(252deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-71 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-71 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-71 .slice.two {
+  transform: rotate(255.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-72 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-72 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-72 .slice.two {
+  transform: rotate(259.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-73 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-73 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-73 .slice.two {
+  transform: rotate(262.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-74 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-74 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-74 .slice.two {
+  transform: rotate(266.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-75 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-75 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-75 .slice.two {
+  transform: rotate(270deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-76 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-76 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-76 .slice.two {
+  transform: rotate(273.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-77 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-77 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-77 .slice.two {
+  transform: rotate(277.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-78 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-78 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-78 .slice.two {
+  transform: rotate(280.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-79 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-79 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-79 .slice.two {
+  transform: rotate(284.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-80 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-80 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-80 .slice.two {
+  transform: rotate(288deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-81 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-81 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-81 .slice.two {
+  transform: rotate(291.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-82 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-82 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-82 .slice.two {
+  transform: rotate(295.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-83 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-83 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-83 .slice.two {
+  transform: rotate(298.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-84 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-84 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-84 .slice.two {
+  transform: rotate(302.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-85 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-85 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-85 .slice.two {
+  transform: rotate(306deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-86 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-86 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-86 .slice.two {
+  transform: rotate(309.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-87 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-87 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-87 .slice.two {
+  transform: rotate(313.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-88 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-88 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-88 .slice.two {
+  transform: rotate(316.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-89 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-89 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-89 .slice.two {
+  transform: rotate(320.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-90 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-90 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-90 .slice.two {
+  transform: rotate(324deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-91 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-91 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-91 .slice.two {
+  transform: rotate(327.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-92 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-92 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-92 .slice.two {
+  transform: rotate(331.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-93 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-93 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-93 .slice.two {
+  transform: rotate(334.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-94 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-94 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-94 .slice.two {
+  transform: rotate(338.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-95 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-95 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-95 .slice.two {
+  transform: rotate(342deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-96 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-96 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-96 .slice.two {
+  transform: rotate(345.6deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-97 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-97 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-97 .slice.two {
+  transform: rotate(349.2deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-98 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-98 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-98 .slice.two {
+  transform: rotate(352.8deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-99 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-99 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-99 .slice.two {
+  transform: rotate(356.4deg);
+  background: var(--primary);
+}
+
+.ainst-donut-chart-100 {
+  background: var(--secondary);
+}
+.ainst-donut-chart-100 .slice.one {
+  transform: rotate(90deg);
+  background: var(--primary);
+}
+.ainst-donut-chart-100 .slice.two {
+  transform: rotate(360deg);
+  background: var(--primary);
+}
+
+/* Fix scrolling issue */
+#page-mod-ainst-view #page #region-main > .card {
+  overflow: visible !important;
+}
+
+#page-mod-ainst-mod .fdescription.required .icon {
+  margin-right: 0;
+}
+
+#page-mod-ainst-index #page #region-main,
+#page-mod-ainst-reorder_section #page #region-main {
+  overflow: visible !important;
+}
+#page-mod-ainst-index #page #region-main > .card,
+#page-mod-ainst-reorder_section #page #region-main > .card {
+  overflow: visible;
+}
+#page-mod-ainst-index.jsenabled #page,
+#page-mod-ainst-reorder_section.jsenabled #page {
+  overflow-x: visible;
+}
+
+#region-main .ainst-assignment .ainst-course-box {
+  margin-bottom: 20px;
+}
+#region-main .ainst-assignment h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+#region-main .ainst-assignment p, #region-main .ainst-assignment li {
+  font-size: 16px;
+}
+#region-main .ainst-assignment .toolbox {
+  margin-bottom: 20px;
+}
+#region-main .ainst-assignment .toolbox a:not(:last-child) {
+  margin-right: 20px;
+}
+@media (max-width: 767px) {
+  #region-main .ainst-assignment .toolbox .btn {
+    margin-bottom: 20px;
+  }
+}
+#region-main .ainst-assignment-timeline {
+  display: table;
+  align-items: center;
+  margin: 20px auto;
+}
+@media (max-width: 767px) {
+  #region-main .ainst-assignment-timeline {
+    background: transparent;
+    margin: 0 auto;
+  }
+}
+#region-main .ainst-assignment-timeline .btn-secondary {
+  margin: 20px;
+}
+@media (max-width: 767px) {
+  #region-main .ainst-assignment-timeline .btn-secondary {
+    margin: 0;
+  }
+}
+#region-main .ainst-assignment .ainst-subsection {
+  padding-left: 20px;
+  padding-top: 20px;
+  border-bottom: 1px solid var(--secondary);
+}
+#region-main .ainst-assignment .ainst-subsection:last-child {
+  border-bottom: none;
+}
+#region-main .ainst-assignment .ainst-subsection h2 {
+  display: block !important;
+}
+#region-main .ainst-assignment .ainst-subsection .ainst-subsection-toggle-content {
+  position: relative;
+  padding: 0 20px 20px 0;
+}
+@media (max-width: 767px) {
+  #region-main .ainst-assignment .ainst-subsection .ainst-subsection-toggle-content {
+    padding: 0 0 20px 0;
+  }
+}
+#region-main .ainst-assignment .ainst-subsection .ainst-subsection-toggle-content:after {
+  position: relative;
+  content: '';
+  clear: both;
+  display: block;
+}
+#region-main .ainst-assignment-boxes {
+  display: flex;
+  flex-direction: row;
+  background: var(--light);
+}
+#region-main .ainst-assignment-box {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-size: 16px;
+}
+#region-main .ainst-assignment-box img {
+  width: 40px;
+  height: auto;
+}
+#region-main .ainst-assignment-box .ainst-assignment-box-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+#region-main .ainst-assignment-weight {
+  text-align: center;
+}
+#region-main .ainst-assignment-time {
+  color: var(--primary);
+}
+#region-main .ainst-assignment-introduction .modified {
+  display: none;
+}
+#region-main .ainst-assignment-list table {
+  border: none;
+  min-width: 100%;
+}
+#region-main .ainst-assignment-list table th {
+  position: sticky;
+  top: 50px;
+  /* nav.navbar height */
+  z-index: 2;
+  background: #fff;
+  border-bottom: 1px solid var(--secondary);
+  border-right: none;
+}
+#region-main .ainst-assignment-list table th[align="center"] {
+  text-align: center;
+}
+#region-main .ainst-assignment-list table tbody tr td {
+  border-right: none;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--secondary);
+}
+#region-main .ainst-assignment-list table tbody tr:last-child td {
+  border-bottom: none;
+}
+#region-main .ainst-assignment-list table td, #region-main .ainst-assignment-list table th {
+  padding: 5px;
+}
+#region-main .ainst-assignment table tfoot td {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  border-top: 2px solid var(--gray);
+  border-right: 1px solid var(--secondary);
+}
+#region-main .ainst-assignment table tfoot td:last-child {
+  border-right: none;
+}
+.ainst-dd-assignment-list {
+  list-style: none;
+}

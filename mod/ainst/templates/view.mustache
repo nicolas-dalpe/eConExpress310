@@ -1,0 +1,113 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    @package    mod_ainst
+    @copyright  (c) 2020 Knowledge One Inc. (https://knowledgeone.ca)
+    @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+}}
+{{!
+    @template mod_ainst/view
+
+    Assessment Instruction detail page.
+
+    Example context (json):
+    {
+        "instruction": {
+            "id":            int(10)   "30"
+            "course":        int(10)   "2"
+            "name":          char(255) "Instruction name"
+            "intro":         text      "<p>Instruction content <img src="@@PLUGINFILE@@/ainst_editor_010.png" alt="" role="presentation"><br></p>"
+            "introformat":   int(4)    "1"
+            "filemanager":   bool      "Whether there is uploaded file or note."
+            "fileurl":       str       "The file URL."
+            "filename":      str       "The file name."
+            "duedate":       char(255) "26 Mars 2028"
+            "weigthaschart": bool      "whether the weight should be display as a pie chart."
+            "weight":        int(4)    "14"
+            "inst_order":    int(10)   "11"
+            "timecreated":   int(10)   "1585244966"
+            "timemodified":  int(10)   "1585244966"
+        },
+        "sections" {
+            "id":                    int(10)   "10"
+            "ainst_id":              int(10)   "30"
+            "ainst_section_type_id": int(4)    "1"
+            "name":                  char(255) "section's name"
+            "intro":                 text      "section's content"
+            "introformat":           int(4)    "1"
+            "section_order":         int(10)   "10"
+            "type_shortname":        char(255) "Section's type short name ie: stepbystep"
+            "timecreated" :          int(10)   "1585244966"
+            "timemodified" :         int(10)   "1585244966"
+        }
+    }
+}}
+<div class="ainst-assignment">
+    <div class="ainst-course-box">
+        {{#instruction}}
+        <div class="ainst-assignment-introduction">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <h1 class="ainst-page-title">{{name}}</h1>
+                    {{{intro}}}
+                    {{#filemanager}}
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <a href="{{fileurl}}">{{filename}}</a>
+                        </div>
+                    </div>
+                    {{/filemanager}}
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="ainst-assignment-boxes">
+                        <div class="ainst-assignment-box ainst-assignment-time">
+                            <span class="ainst-assignment-box-label">{{#str}} table_col_duedate, ainst {{/str}}</span>
+                            {{{duedate}}}
+                        </div>
+                        <div class="ainst-assignment-box ainst-assignment-weight">
+                            <span class="ainst-assignment-box-label">{{#str}} table_col_weight, ainst {{/str}}</span>
+                            <span class="ainst-assignment-box-icon">
+                                {{#weigthaschart}}
+                                <div class="ainst-donut-chart ainst-donut-chart-{{weight}}" data-percentage="{{weight}}">
+                                    <div class="slice one"></div>
+                                    <div class="slice two"></div>
+                                    <div class="chart-center">
+                                        <span>{{weight}}{{#str}} percent, ainst {{/str}}</span>
+                                    </div>
+                                </div>
+                                {{/weigthaschart}}
+                                {{^weigthaschart}}
+                                <span>{{{weight}}}</span>
+                                {{/weigthaschart}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/instruction}}
+    </div>
+
+    {{#sections}}
+    <div class="ainst-subsection">
+        <a class="ainst-subsection-toggle" data-toggle="collapse" href="#{{type_shortname}}" role="button" aria-expanded="true" aria-controls="{{type_shortname}}" data-type="{{type_shortname}}">
+            <h2 class="ainst-subsection-name">{{name}}</h2>
+        </a>
+        <div class="collapse show" id="{{type_shortname}}">
+            <div class="ainst-subsection-toggle-content">
+                {{{intro}}}
+            </div>
+        </div>
+    </div>
+    {{/sections}}
+</div>
