@@ -49,7 +49,7 @@ require_course_login($course, true, $cm);
 require_capability('mod/it:view', $modulecontext);
 
 // Verify course context.
-$h5pcm = get_coursemodule_from_id('hvp', 7);
+$h5pcm = get_coursemodule_from_id('hvp', 212);
 if (!$h5pcm) {
     print_error('invalidcoursemodule');
 }
@@ -103,7 +103,7 @@ $contenthash = $file->contenthash;
 
 // Get the transcript file path in  Moodle data folder.
 $transcriptPath = sprintf(
-    '/var/www/md_ec_moodle310/filedir/%s/%s/%s',
+    '/var/moodlecoursesdata/filedir/%s/%s/%s',
     substr($contenthash, 0, 2),
     substr($contenthash, 2, 2),
     $contenthash
@@ -146,6 +146,8 @@ if (file_exists($transcriptPath)) {
             $c[$i]['content'] = format_text($line, FORMAT_HTML);
         }
     }
+} else {
+	echo "no file";
 }
 
 // Add bookmarks.
