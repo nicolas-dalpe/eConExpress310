@@ -216,7 +216,7 @@ class qrcodegenerator {
         }
 
         // Creates the QR code URL.
-        $url = new moodle_url('/mod/assign/index.php', array(
+        $url = new moodle_url('/mod/assign/view.php', array(
             'id' => $this->get_assignmentid(),
             'action' => 'editsubmission'
         ));
