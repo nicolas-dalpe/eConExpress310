@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+ require_once($CFG->dirroot . '/mod/assign/submission/qrcodea/lib.php');
+
 
 // Note: This is on by default.
 $settings->add(new admin_setting_configcheckbox('assignsubmission_qrcodea/default',
@@ -49,3 +51,31 @@ if (isset($CFG->maxbytes)) {
                                               get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes));
     $settings->add($element);
 }
+
+// Set the QR Code size in pixel.
+$settings->add(
+    new admin_setting_configtext('assignsubmission_qrcodea/qrcode_size',
+        new lang_string('qrcodesize', 'assignsubmission_qrcodea'),
+        new lang_string('qrcodesize_help', 'assignsubmission_qrcodea'),
+        300,
+        PARAM_INT
+    )
+);
+
+// Set the SVG logo file.
+$svglogo = new admin_setting_configstoredfile(
+    'assignsubmission_qrcodea/qrcode_logo_svg',
+    new lang_string('qrcodelogosvg', 'assignsubmission_qrcodea'),
+    new lang_string('qrcodelogosvg_help', 'assignsubmission_qrcodea'),
+    'assignsubmission_qrcodea_logo',
+    0,
+    array('maxfiles' => 1, 'accepted_types' => ['.svg'])
+);
+
+// Callback to empty the QR Code cache when the logo is updated.
+$svglogo->set_updatedcallback('assignsubmission_qrcodea_reset_qrcode_cache');
+// $svglogo->set_updatedcallback(function () {
+//     return 'assignsubmission_qrcodea_reset_qrcode_cache';
+// });
+
+$settings->add($svglogo);
