@@ -36,6 +36,7 @@ $extraclasses = [];
 if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;

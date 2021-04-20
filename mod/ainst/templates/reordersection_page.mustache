@@ -1,0 +1,108 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    Edwiser RemUI
+    @package    theme_remui
+    @copyright  (c) 2018 WisdmLabs (https://wisdmlabs.com/)
+    @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+}}
+{{!
+    @template mod_ainst/reordersection
+
+    Reorder assignment's section.
+
+    Example context (json):
+    {
+        "nosection" : "true | false"
+        "nosectionmsg" : "Text, no section yet..."
+        "instruction": {
+            "id" :           int(10)   "30"
+            "course" :       int(10)   "2"
+            "name" :         char(255) "Instruction name"
+            "intro" :        text      "<p>Instruction content <img src="@@PLUGINFILE@@/ainst_editor_010.png" alt="" role="presentation"><br></p>"
+            "introformat" :  int(4)    "1"
+            "videokey" :     char(255) "not in use for now"
+            "videotbn" :     char(255) "not in use for now"
+            "duedate" :      char(255) "26 Mars 2028"
+            "weight" :       int(4)    "14"
+            "inst_order" :   int(10)   "11"
+            "timecreated" :  int(10)   "1585244966"
+            "timemodified" : int(10)   "1585244966"
+        },
+        dragDropHandler : str "The HTML for the Drag & Drop Handler"
+    }
+}}
+
+<section id="region-main" aria-label="{{#str}}content{{/str}}">
+    <div class="container">
+        <h1 class="mthy-page-title">
+            <span>{{{ course_shortname }}}</span>
+            {{# str }} pt_Section_Reorder, ainst {{/ str }}
+        </h1>
+
+        {{#hasregionmainsettingsmenu}}
+            <div class="region_main_settings_menu_proxy"></div>
+        {{/hasregionmainsettingsmenu}}
+
+        <div class="mthy-assignment">
+            <div class="mthy-course-box">
+
+                {{! Reorder instruction button. }}
+                {{#goto_section_url}}
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-end toolbox">
+                        <a href="{{{goto_section_url}}}" class="btn btn-secondary">{{goto_assignment_link}}</a>
+                    </div>
+                </div>
+                {{/goto_section_url}}
+
+
+                {{! Display this message if there is no instruction to display. }}
+                {{#nosection}}
+                <span class="notifications" id="user-notifications">
+                    <div class="alert alert-info alert-block fade in" role="alert" data-aria-autofocus="true" tabindex="0">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{nosectionmsg}}
+                    </div>
+                </span>
+                {{/nosection}}
+
+                {{^nosection}}
+                <div class="mthy-assignment-list">
+                    {{! *** mthy-dd-assignment-list must also be changed in the AMD module *** }}
+                    <ul class="mthy-dd-section-list">
+                    {{#section}}
+                        <li class="mthy-dd-list-item" data-sectionname="{{id}}">
+                            {{! *** the span must also be changed in the AMD module *** }}
+                            <span class="mthy-dd-assignment">{{{dragDropHandler}}} {{name}}</span>
+                        </li>
+                    {{/section}}
+                    </ul>
+                </div>
+                {{/nosection}}
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <a href="#" class="btn btn-secondary">{{# str }} save_order, ainst {{/ str }}</a>
+                    </div>
+                </div>
+            </div><!-- /mthy-course-box -->
+        </div>
+    </div>
+</section>
+
+{{#js}}
+require(['theme_remui/loader', 'theme_remui/TimeCircles'], function (loader, TimeCircles) {
+    Breakpoints();
+});
+{{/js}}

@@ -1,0 +1,94 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    @package    mod_ainst
+    @copyright  (c) 2020 Knowledge One Inc. (https://knowledgeone.ca)
+    @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+}}
+{{!
+    @template mod_ainst/reorderassignment
+
+    Reorder assessments.
+
+    Example context (json):
+    {
+        "goto_assignment_url":   char(255) "Return to assessment list URL"
+        "goto_assignments_link": char(255) "Return to assessment list link title"
+        "noinstruction":         bool      "Whether there is instruction to display"
+        "noinstructionmsg":      char(255) "Text, no instruction yet..."
+        "instruction": {
+            "id":              int(10)   "30"
+            "course":          int(10)   "2"
+            "name":            char(255) "Assessment Instruction name"
+            "intro":           text      "<p>Instruction content <img src="@@PLUGINFILE@@/ainst_editor_010.png" alt="" role="presentation"><br></p>"
+            "introformat":     int(4)    "1"
+            "duedate":         char(255) "26 Mars 2028"
+            "weight":          int(4)    "14"
+            "inst_order":      int(10)   "11"
+            "timecreated":     int(10)   "1585244966"
+            "timemodified":    int(10)   "1585244966"
+            "dragDropHandler": char(255) "The HTML for the Drag & Drop Handler"
+        },
+    }
+}}
+
+<h1 class="ainst-page-title">
+    <span>{{{ course_shortname }}}</span>
+    {{# str }} pt_Assignments_Reorder, ainst {{/ str }}
+</h1>
+
+<div class="ainst-assignment">
+    <div class="ainst-course-box">
+
+        {{! Reorder instruction button. }}
+        {{#goto_assignment_url}}
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end toolbox">
+                <a href="{{{goto_assignment_url}}}" class="btn btn-secondary">{{goto_assignments_link}}</a>
+            </div>
+        </div>
+        {{/goto_assignment_url}}
+
+
+        {{! Display this message if there is no instruction to display. }}
+        {{#noinstruction}}
+        <span class="notifications" id="user-notifications">
+            <div class="alert alert-info alert-block fade in" role="alert" data-aria-autofocus="true" tabindex="0">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{noinstructionmsg}}
+            </div>
+        </span>
+        {{/noinstruction}}
+
+        {{#isinstruction}}
+        <div class="ainst-assignment-list">
+            {{! *** ainst-dd-assignment-list must also be changed in the AMD module *** }}
+            <ul class="ainst-dd-assignment-list" id="items-list">
+            {{#instruction}}
+                <li class="ainst-dd-list-item" data-sectionname="{{id}}">
+                    {{! *** the span must also be changed in the AMD module *** }}
+                    <span class="ainst-dd-assignment">{{{dragDropHandler}}} {{name}}</span>
+                </li>
+            {{/instruction}}
+            </ul>
+        </div>
+        {{/isinstruction}}
+
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <a href="#" class="btn btn-secondary">{{# str }} save_order, ainst {{/ str }}</a>
+            </div>
+        </div>
+
+    </div>
+</div>

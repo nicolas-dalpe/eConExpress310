@@ -1,0 +1,159 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    @package    mod_ainst
+    @copyright  (c) 2020 Knowledge One Inc. (https://knowledgeone.ca)
+    @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+}}
+{{!
+    @template mod_ainst/index
+
+    Display all assessment instructions contained in a course.
+
+    Example context (json):
+    {
+        "add_instruction_url":    char(255) "Add instruction url"
+        "add_instruction_link":   char(255) "Add instruction link title"
+        "order_instruction_url":  char(255) "Reorder instruction url"
+        "order_instruction_link": char(255) "Reorder instruction link title"
+        "copy_link_url":          char(255) "Copy instruction url"
+        "copy_link_link":         char(255) "Copy instruction link title"
+        "assignment_timeline":    char(255) "Whether a assessment timeline is available for download"
+        "noinstruction":          bool      "Whether there is instruction to display"
+        "noinstructionmsg":       char(255) "Text, no instruction yet..."
+        "course_shortname":       char(255) "Course shortname"
+        "instruction": {
+            "instruction_detail_url": char(255) "URL of the assessment instruction"
+            "restricted":    bool      "Whether there is restriction criteria to display"
+            "availableinfo": char(255) "The restriction criteria"
+            "weigthaschart": bool      "whether the weight should be display as a pie chart."
+            "id" :           int(10)   "30"
+            "course" :       int(10)   "2"
+            "name" :         char(255) "Instruction name"
+            "intro" :        text      "<p>Instruction content <img src="@@PLUGINFILE@@/ainst_editor_010.png" alt="" role="presentation"><br></p>"
+            "introformat" :  int(4)    "1"
+            "duedate" :      char(255) "26 Mars 2028"
+            "weight" :       int(4)    "14"
+            "inst_order" :   int(10)   "11"
+            "timecreated" :  int(10)   "1585244966"
+            "timemodified" : int(10)   "1585244966"
+            "action_links":  bool      "Whether we should display the link to the user"
+        },
+    }
+}}
+
+<h1 class="ainst-page-title">
+    <span>{{{ course_shortname }}}</span>
+    {{# str }} pt_Assignments_Overview, ainst {{/ str }}
+</h1>
+
+<div class="ainst-assignment">
+    <div class="ainst-course-box">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-md-end justify-content-sm-center toolbox flex-wrap">
+                {{! Add instruction button. }}
+                {{#add_instruction_url}}
+                <a href="{{{add_instruction_url}}}" class="btn btn-secondary">{{add_instruction_link}}</a>
+                {{/add_instruction_url}}
+
+                {{! Reorder instruction button. }}
+                {{#order_instruction_url}}
+                <a href="{{{order_instruction_url}}}" class="btn btn-secondary">{{order_instruction_link}}</a>
+                {{/order_instruction_url}}
+
+                {{! Copy link to this page button. }}
+                {{! MTHYMOOD-605 - As a teacher, I want a link to a course assignment list. }}
+                {{#copy_link_url}}
+                <button class="btn btn-secondary copytrigger" id="copyme" value="{{{copy_link_url}}}">{{copy_link_link}}</button>
+                {{/copy_link_url}}
+            </div>
+        </div>
+
+        {{! Assgnment Timeline download link }}
+        {{#assignment_timeline}}
+        <div class="ainst-assignment-timeline">
+            <a class="btn btn-secondary" target="_blank" href="{{assignment_timeline_link_url}}">{{#str}}assignment_timeline_link_title, ainst{{/str}}</a>
+        </div>
+        {{/assignment_timeline}}
+
+        {{! Display this message if there is no instruction to display. }}
+        {{#noinstruction}}
+        <span class="notifications" id="user-notifications">
+            <div class="alert alert-info alert-block fade in" role="alert" data-aria-autofocus="true" tabindex="0">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{noinstructionmsg}}
+            </div>
+        </span>
+        {{/noinstruction}}
+
+        {{#isinstruction}}
+        <div class="ainst-assignment-list">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th align="left" width="40%">{{# str }} table_col_assignment, ainst {{/ str }}</th>
+                        <th align="left" width="30%">{{# str }} table_col_duedate, ainst {{/ str }}</th>
+                        <th align="center" width="20%">{{# str }} table_col_weight, ainst {{/ str }}</th>
+                        {{#action_links}}
+                        <th align="left" width="30%">{{# str }} table_col_action, ainst {{/ str }}</th>
+                        {{/action_links}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#instruction}}
+                    <tr>
+                        <td align="left">
+                            <h3>
+                                {{#instruction_detail_url}}
+                                <a href="{{{instruction_detail_url}}}">{{name}}</a>
+                                {{/instruction_detail_url}}
+                                {{^instruction_detail_url}}
+                                {{name}}
+                                {{/instruction_detail_url}}
+                            </h3>
+                            {{#restricted}}
+                            {{{availableinfo}}}
+                            {{/restricted}}
+                        </td>
+                        <td align="left">{{{duedate}}}</td>
+                        <td align="center" class="ainst-assignment-weight">
+                            {{#weigthaschart}}
+                            <div class="ainst-donut-chart ainst-donut-chart-{{weight}}" data-percentage="{{weight}}">
+                                <div class="slice one"></div>
+                                <div class="slice two"></div>
+                                <div class="chart-center">
+                                    <span>{{weight}}{{#str}} percent, ainst {{/str}}</span>
+                                </div>
+                            </div>
+                            {{/weigthaschart}}
+                            {{^weigthaschart}}
+                            <span>{{{weight}}}</span>
+                            {{/weigthaschart}}
+                        </td>
+                        {{#action_links}}
+                        <td align="center">
+                            <span class="course-item-actions item-actions">
+                                <a href="{{{instruction_update_url}}}">{{# pix}} t/edit, core, {{# str }} edit_link_title, mod_ainst {{/ str }}{{/ pix }}</a>
+                                <a href="{{{instruction_reordersection_url}}}">{{# pix}} t/move, core, {{# str }} edit_link_reorder, mod_ainst {{/ str }}{{/ pix }}</a>
+                                <a href="{{{instruction_delete_url}}}">{{# pix}} t/delete, core, {{# str }} delete_link_title, mod_ainst {{/ str }}{{/ pix }}</a>
+                            </span>
+                        </td>
+                        {{/action_links}}
+                    </tr>
+                    {{/instruction}}
+                </tbody>
+            </table>
+        </div>
+        {{/isinstruction}}
+    </div>
+</div>
