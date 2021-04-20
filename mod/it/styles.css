@@ -1,0 +1,22 @@
+#subtitle {
+    font-size: 1.2em;
+    line-height: 1.7em;
+    padding-top: 1em;
+}
+
+#subtitle > span {
+    padding: .5em .3em;
+}
+
+#subtitle span.nolink {
+    padding: 0.3em;
+}
+
+.bookmark {
+    font-weight: bold;
+}
+
+.hightlighted {
+    background-color: #0f6fc5;
+    color: white;
+}
