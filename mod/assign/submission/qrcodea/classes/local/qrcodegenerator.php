@@ -73,6 +73,8 @@ class qrcodegenerator {
      * @var string
      */
     protected $logopath;
+    protected $defaultlogopathsvg = '/mod/assign/submission/qrcodea/pix/concordialogo.svg';
+    protected $defaultlogopathpng = '/mod/assign/submission/qrcodea/pix/concordialogo.png';
 
     /**
      * Course for which the qrcode is created.
@@ -93,6 +95,14 @@ class qrcodegenerator {
     protected $assignmentid;
 
     /**
+     * Defines the QR Code cache location.
+     * @var string
+     */
+    protected $cache;
+
+    public $modulename = 'assignsubmission_qrcodea';
+
+    /**
      * qrcodegenerator constructor.
      * @param int $format File type 1 for SVG and 2 for PNG
      * @param int $size Image size in pixel.
@@ -101,7 +111,9 @@ class qrcodegenerator {
      * @param int $assignmentid The assignment id the QR Code should link to.
      */
     public function __construct($qrcodeoptions) {
-        global $CFG, $DB;
+
+        // Set the cache location.
+        $this->set_cache();
 
         $this->course = get_course($qrcodeoptions->courseid);
 
@@ -109,27 +121,94 @@ class qrcodegenerator {
         $this->set_format($qrcodeoptions->format);
 
         // Set the QR Code size.
-        $this->set_size($qrcodeoptions->size);
+        $this->set_size(get_config('assignsubmission_qrcodea', 'qrcode_size'));
 
         // Set the asignment cmid.
         $this->set_assignmentid($qrcodeoptions->assignmentid);
 
-        // Get the logo path to be displayed.
-        if ($this->get_format() == 1) {
-            $this->logopath = $CFG->dirroot . '/mod/assign/submission/qrcodea/pix/concordialogo.svg';
-        } else {
-            $this->logopath = $CFG->dirroot . '/mod/assign/submission/qrcodea/pix/concordialogo.png';
-        }
+        // Set the logo path in the middle/center of the QR Code.
+        $this->set_logopath();
 
         // Path of the cached QR Code.
         $this->file = sprintf(
-            '%s/assignsubmission_qrcodea/course-%d_assignment-%d_size-%d.%s',
-            $CFG->localcachedir,
+            '%s/course-%d_assignment-%d_size-%d.%s',
+            $this->get_cache(),
             $this->course->id,
             $this->get_assignmentid(),
             $this->get_size(),
             ($this->get_format() == 1) ? 'svg' : 'png'
         );
+    }
+
+    public function set_cache() {
+        global $CFG;
+        $this->cache = $CFG->localcachedir . '/' . $this->modulename;
+    }
+
+    public function get_cache() {
+        return $this->cache;
+    }
+
+    /**
+     * Set the logo in the middle/center of the QR Code.
+     */
+    public function set_logopath() {
+        global $CFG;
+
+        $logopath = $this->get_logopath();
+
+        // If get_logopath returns null it means no image has been set,
+        // in this case set it to the default one.
+        if (is_null($logopath)) {
+            if ($this->get_format() == 1) {
+                $this->logopath = $CFG->dirroot.$this->defaultlogopathsvg;
+            } else {
+                $this->logopath = $CFG->dirroot.$this->defaultlogopathpng;
+            }
+        } else {
+            $this->logopath = $logopath->path;
+        }
+    }
+
+    /**
+     * Generates logo file path and hash.
+     * @return string file path and hash
+     */
+    private function get_logopath() {
+        global $CFG;
+        $logo = new \stdClass();
+
+        if ($this->format == 2) {
+            $filearea = 'logo_png';
+            $filepath = pathinfo(get_config('block_qrcode', 'logofile_png'), PATHINFO_DIRNAME);
+            $filename = pathinfo(get_config('block_qrcode', 'logofile_png'), PATHINFO_BASENAME);
+        } else {
+            // $filearea = 'logo_svg';
+            $filearea = 'assignsubmission_qrcodea_logo';
+            $filepath = pathinfo(get_config('assignsubmission_qrcodea', 'qrcode_logo_svg'), PATHINFO_DIRNAME);
+            $filename = pathinfo(get_config('assignsubmission_qrcodea', 'qrcode_logo_svg'), PATHINFO_BASENAME);
+        }
+
+        $fs = get_file_storage();
+        $file = $fs->get_file(
+            \context_system::instance()->id,
+            'assignsubmission_qrcodea',
+            $filearea,
+            0,
+            $filepath,
+            $filename
+        );
+
+        if ($file) {
+            $logo->hash = $file->get_contenthash();
+            $logo->path = $CFG->dataroot . '/filedir/' .
+                substr($logo->hash, 0, 2) . '/' .
+                substr($logo->hash, 2, 2) . '/' .
+                $logo->hash;
+
+            return $logo;
+        }
+        return null;
     }
 
     /**
@@ -332,41 +411,17 @@ class qrcodegenerator {
         return $xmldoc->saveXML();
     }
 
-    /**
-     * Generates logo file path and hash.
-     * @return string file path and hash
-     */
-    private function get_logo() {
+    public static function reset_qrcode_cache() {
         global $CFG;
-        $logo = new \stdClass();
 
-        if ($this->format == 2) {
-            $filearea = 'logo_png';
-            $filepath = pathinfo(get_config('block_qrcode', 'logofile_png'), PATHINFO_DIRNAME);
-            $filename = pathinfo(get_config('block_qrcode', 'logofile_png'), PATHINFO_BASENAME);
-        } else {
-            $filearea = 'logo_svg';
-            $filepath = pathinfo(get_config('block_qrcode', 'logofile_svg'), PATHINFO_DIRNAME);
-            $filename = pathinfo(get_config('block_qrcode', 'logofile_svg'), PATHINFO_BASENAME);
+        // QR Code cache location.
+        $cache = $CFG->localcachedir . '/assignsubmission_qrcodea/';
+
+        // Cycle through the dir and delete all cached QR Code.
+        foreach (new \DirectoryIterator($cache) as $file) {
+            if($file->isDot()) continue;
+            $filetodelete = $cache . $file->getFilename();
+            $a = unlink($filetodelete);
         }
-
-        $fs = get_file_storage();
-        $file = $fs->get_file(\context_system::instance()->id,
-            'block_qrcode',
-            $filearea,
-            0,
-            $filepath,
-            $filename);
-
-        if ($file) {
-            $logo->hash = $file->get_contenthash();
-            $logo->path = $CFG->dataroot . '/filedir/' .
-                substr($logo->hash, 0, 2) . '/' .
-                substr($logo->hash, 2, 2) . '/' .
-                $logo->hash;
-
-            return $logo;
-        }
-        return null;
     }
 }

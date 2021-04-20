@@ -413,7 +413,7 @@ class assign_submission_qrcodea extends assign_submission_plugin {
         $qrcodeoptions->format = 1;
 
         // Size of the QR Code in pixel.
-        $qrcodeoptions->size = 300;
+        // $qrcodeoptions->size = 300;
 
         // Course id.
         $qrcodeoptions->courseid = $COURSE->id;

@@ -23,6 +23,12 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
+use assignsubmission_qrcodea\local\qrcodegenerator;
+
+function assignsubmission_qrcodea_reset_qrcode_cache() {
+    qrcodegenerator::reset_qrcode_cache();
+}
+
 /**
  * Serves assignment submissions and other files.
  *
