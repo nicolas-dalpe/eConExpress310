@@ -48,4 +48,10 @@ $string['siteuploadlimit'] = 'Site upload limit';
 $string['submissionfilearea'] = 'Uploaded submission files';
 
 // QR Code specific
-$string['instruction_qrcode'] = 'Scan this QR Code with your phone/tablet to submit your assignment.';
+$string['instruction_qrcode'] = 'Scan this QR code to upload your files.';
+
+$string['qrcodesize'] = 'QR Code size';
+$string['qrcodesize_help'] = 'Size of the QR Code in pixel.';
+
+$string['qrcodelogosvg'] = 'Logo SVG file';
+$string['qrcodelogosvg_help'] = 'Logo image file to be displayed in the QR Code (SVG Format).';
