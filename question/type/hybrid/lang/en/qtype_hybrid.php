@@ -60,6 +60,6 @@ $string['responsetemplateheader'] = 'Response Template';
 $string['responsetemplate_help'] = 'Any text entered here will be displayed in the response input box when a new attempt at the question starts.';
 
 // The answer to inject in the text field when checking the checkbox.
-$string['tmp_answer'] = 'I did answer the question on paper.';
-$string['chkboxlabel'] = 'Check this box when you are done answering the question on paper.';
+$string['tmp_answer'] = 'I have completed answering this question on paper.';
+$string['chkboxlabel'] = 'I have completed answering this question on paper.';
 $string['nline'] = '{$a} line';
