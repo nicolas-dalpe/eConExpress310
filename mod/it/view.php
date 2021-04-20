@@ -49,7 +49,11 @@ require_course_login($course, true, $cm);
 require_capability('mod/it:view', $modulecontext);
 
 // Verify course context.
+<<<<<<< HEAD
 $h5pcm = get_coursemodule_from_id('hvp', 212);
+=======
+$h5pcm = get_coursemodule_from_id('hvp', 7);
+>>>>>>> 8e8202bab94... QRMOOD-6 - Put back local commander, mod_it, mod_hvp
 if (!$h5pcm) {
     print_error('invalidcoursemodule');
 }
@@ -103,7 +107,11 @@ $contenthash = $file->contenthash;
 
 // Get the transcript file path in  Moodle data folder.
 $transcriptPath = sprintf(
+<<<<<<< HEAD
     '/var/moodlecoursesdata/filedir/%s/%s/%s',
+=======
+    '/var/www/md_ec_moodle310/filedir/%s/%s/%s',
+>>>>>>> 8e8202bab94... QRMOOD-6 - Put back local commander, mod_it, mod_hvp
     substr($contenthash, 0, 2),
     substr($contenthash, 2, 2),
     $contenthash
@@ -146,8 +154,11 @@ if (file_exists($transcriptPath)) {
             $c[$i]['content'] = format_text($line, FORMAT_HTML);
         }
     }
+<<<<<<< HEAD
 } else {
 	echo "no file";
+=======
+>>>>>>> 8e8202bab94... QRMOOD-6 - Put back local commander, mod_it, mod_hvp
 }
 
 // Add bookmarks.
