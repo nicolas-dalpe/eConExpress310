@@ -28,7 +28,7 @@
 // Note: This is on by default.
 $settings->add(new admin_setting_configcheckbox('assignsubmission_qrcodea/default',
                    new lang_string('default', 'assignsubmission_qrcodea'),
-                   new lang_string('default_help', 'assignsubmission_qrcodea'), 1));
+                   new lang_string('default_help', 'assignsubmission_qrcodea'), 0));
 
 $settings->add(new admin_setting_configtext('assignsubmission_qrcodea/maxfiles',
                    new lang_string('maxfiles', 'assignsubmission_qrcodea'),
@@ -40,16 +40,16 @@ $settings->add(new admin_setting_filetypes('assignsubmission_qrcodea/filetypes',
 
 if (isset($CFG->maxbytes)) {
 
-    $name = new lang_string('maximumsubmissionsize', 'assignsubmission_qrcodea');
-    $description = new lang_string('configmaxbytes', 'assignsubmission_qrcodea');
-
     $maxbytes = get_config('assignsubmission_qrcodea', 'maxbytes');
-    $element = new admin_setting_configselect('assignsubmission_qrcodea/maxbytes',
-                                              $name,
-                                              $description,
-                                              $CFG->maxbytes,
-                                              get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes));
-    $settings->add($element);
+    $settings->add(
+        new admin_setting_configselect(
+            'assignsubmission_qrcodea/maxbytes',
+            new lang_string('maximumsubmissionsize', 'assignsubmission_qrcodea'),
+            new lang_string('configmaxbytes', 'assignsubmission_qrcodea'),
+            $CFG->maxbytes,
+            get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes)
+        )
+    );
 }
 
 // Set the QR Code size in pixel.
@@ -74,8 +74,5 @@ $svglogo = new admin_setting_configstoredfile(
 
 // Callback to empty the QR Code cache when the logo is updated.
 $svglogo->set_updatedcallback('assignsubmission_qrcodea_reset_qrcode_cache');
-// $svglogo->set_updatedcallback(function () {
-//     return 'assignsubmission_qrcodea_reset_qrcode_cache';
-// });
 
 $settings->add($svglogo);
