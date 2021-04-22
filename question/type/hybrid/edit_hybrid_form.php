@@ -41,30 +41,36 @@ class qtype_hybrid_edit_form extends question_edit_form {
         $mform->addElement('header', 'responseoptions', get_string('responseoptions', 'qtype_hybrid'));
         $mform->setExpanded('responseoptions');
 
+        // Response format.
         $mform->addElement('select', 'responseformat',
                 get_string('responseformat', 'qtype_hybrid'), $qtype->response_formats());
         $mform->setDefault('responseformat', 'plain');
 
+        // Require text.
         $mform->addElement('select', 'responserequired',
                 get_string('responserequired', 'qtype_hybrid'), $qtype->response_required_options());
         $mform->setDefault('responserequired', 1);
         $mform->disabledIf('responserequired', 'responseformat', 'eq', 'noinline');
 
+        // Input box size.
         $mform->addElement('select', 'responsefieldlines',
                 get_string('responsefieldlines', 'qtype_hybrid'), $qtype->response_sizes());
         $mform->setDefault('responsefieldlines', 1);
         $mform->disabledIf('responsefieldlines', 'responseformat', 'eq', 'noinline');
 
+        // Allow attachments.
         $mform->addElement('select', 'attachments',
                 get_string('allowattachments', 'qtype_hybrid'), $qtype->attachment_options());
         $mform->setDefault('attachments', 0);
 
+        // Require attachments.
         $mform->addElement('select', 'attachmentsrequired',
                 get_string('attachmentsrequired', 'qtype_hybrid'), $qtype->attachments_required_options());
         $mform->setDefault('attachmentsrequired', 0);
         $mform->addHelpButton('attachmentsrequired', 'attachmentsrequired', 'qtype_hybrid');
         $mform->disabledIf('attachmentsrequired', 'attachments', 'eq', 0);
 
+        // Accepted file types.
         $mform->addElement('filetypes', 'filetypeslist', get_string('acceptedfiletypes', 'qtype_hybrid'));
         $mform->addHelpButton('filetypeslist', 'acceptedfiletypes', 'qtype_hybrid');
         $mform->disabledIf('filetypeslist', 'attachments', 'eq', 0);
