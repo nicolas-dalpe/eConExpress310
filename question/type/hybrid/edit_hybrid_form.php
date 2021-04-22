@@ -43,7 +43,7 @@ class qtype_hybrid_edit_form extends question_edit_form {
 
         $mform->addElement('select', 'responseformat',
                 get_string('responseformat', 'qtype_hybrid'), $qtype->response_formats());
-        $mform->setDefault('responseformat', 'editor');
+        $mform->setDefault('responseformat', 'plain');
 
         $mform->addElement('select', 'responserequired',
                 get_string('responserequired', 'qtype_hybrid'), $qtype->response_required_options());
@@ -52,7 +52,7 @@ class qtype_hybrid_edit_form extends question_edit_form {
 
         $mform->addElement('select', 'responsefieldlines',
                 get_string('responsefieldlines', 'qtype_hybrid'), $qtype->response_sizes());
-        $mform->setDefault('responsefieldlines', 15);
+        $mform->setDefault('responsefieldlines', 1);
         $mform->disabledIf('responsefieldlines', 'responseformat', 'eq', 'noinline');
 
         $mform->addElement('select', 'attachments',
