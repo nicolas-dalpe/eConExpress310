@@ -50,7 +50,7 @@ class qtype_hybrid_renderer extends qtype_renderer {
 
         if (!$step->has_qt_var('answer') && empty($options->readonly)) {
             // Question has never been answered, fill it with response template.
-            $step = new question_attempt_step(array('answer'=>$question->responsetemplate));
+            $step = new question_attempt_step(array('answer' => $question->responsetemplate));
         }
 
         if (empty($options->readonly)) {
@@ -86,8 +86,8 @@ class qtype_hybrid_renderer extends qtype_renderer {
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));
         $result .= html_writer::tag('div', $answer, array('class' => 'answer'));
         $result .= html_writer::tag('div', $files, array('class' => 'attachments'));
-        $result .= html_writer::end_tag('div'); // .ablock
-        $result .= html_writer::end_tag('div'); // .qtype_hybrid_builtin_answers
+        $result .= html_writer::end_tag('div'); // End .ablock.
+        $result .= html_writer::end_tag('div'); // End .qtype_hybrid_builtin_answers.
 
         // Add the student answer checkbox.
         $result .= html_writer::start_tag('div', array('class' => 'qtype_hybrid_student_answers'));
@@ -102,8 +102,8 @@ class qtype_hybrid_renderer extends qtype_renderer {
         $labelattr = array('for' => 'studentanswered_chk', 'class' => 'ml-1');
         $result .= html_writer::tag('label', get_string('chkboxlabel', 'qtype_hybrid'), $labelattr);
 
-        $result .= html_writer::end_tag('div'); // .adblock
-        $result .= html_writer::end_tag('div'); // .qtype_hybrid_student_answers
+        $result .= html_writer::end_tag('div'); // End .adblock.
+        $result .= html_writer::end_tag('div'); // End .qtype_hybrid_student_answers.
 
         return $result;
     }
