@@ -103,13 +103,13 @@ class qtype_hybrid_edit_form extends question_edit_form {
         $draftid = file_get_submitted_draft_itemid('graderinfo');
         $question->graderinfo = array();
         $question->graderinfo['text'] = file_prepare_draft_area(
-            $draftid,           // Draftid
-            $this->context->id, // context
-            'qtype_hybrid',      // component
-            'graderinfo',       // filarea
-            !empty($question->id) ? (int) $question->id : null, // itemid
-            $this->fileoptions, // options
-            $question->options->graderinfo // text.
+            $draftid,           // Draftid.
+            $this->context->id, // Context.
+            'qtype_hybrid',      // Component.
+            'graderinfo',       // Filarea.
+            !empty($question->id) ? (int) $question->id : null, // Itemid.
+            $this->fileoptions, // Options.
+            $question->options->graderinfo // Text.
         );
         $question->graderinfo['format'] = $question->options->graderinfoformat;
         $question->graderinfo['itemid'] = $draftid;
