@@ -75,6 +75,8 @@ class qrcodegenerator {
     protected $logopath;
     protected $defaultlogopathsvg = '/mod/assign/submission/qrcodea/pix/concordialogo.svg';
     protected $defaultlogopathpng = '/mod/assign/submission/qrcodea/pix/concordialogo.png';
+    protected $logofileareapng = 'assignsubmission_qrcodea_logo_png';
+    protected $logofileareasvg = 'assignsubmission_qrcodea_logo_svg';
 
     /**
      * Course for which the qrcode is created.
@@ -118,10 +120,10 @@ class qrcodegenerator {
         $this->course = get_course($qrcodeoptions->courseid);
 
         // Set image format.
-        $this->set_format($qrcodeoptions->format);
+        $this->set_format(get_config($this->modulename, 'qrcode_format'));
 
         // Set the QR Code size.
-        $this->set_size(get_config('assignsubmission_qrcodea', 'qrcode_size'));
+        $this->set_size(get_config($this->modulename, 'qrcode_size'));
 
         // Set the asignment cmid.
         $this->set_assignmentid($qrcodeoptions->assignmentid);
@@ -179,20 +181,19 @@ class qrcodegenerator {
         $logo = new \stdClass();
 
         if ($this->format == 2) {
-            $filearea = 'logo_png';
-            $filepath = pathinfo(get_config('block_qrcode', 'logofile_png'), PATHINFO_DIRNAME);
-            $filename = pathinfo(get_config('block_qrcode', 'logofile_png'), PATHINFO_BASENAME);
+            $filearea = $this->logofileareapng;
+            $filepath = pathinfo(get_config($this->modulename, 'qrcode_logo_png'), PATHINFO_DIRNAME);
+            $filename = pathinfo(get_config($this->modulename, 'qrcode_logo_png'), PATHINFO_BASENAME);
         } else {
-            // $filearea = 'logo_svg';
-            $filearea = 'assignsubmission_qrcodea_logo';
-            $filepath = pathinfo(get_config('assignsubmission_qrcodea', 'qrcode_logo_svg'), PATHINFO_DIRNAME);
-            $filename = pathinfo(get_config('assignsubmission_qrcodea', 'qrcode_logo_svg'), PATHINFO_BASENAME);
+            $filearea = $this->logofileareasvg;
+            $filepath = pathinfo(get_config($this->modulename, 'qrcode_logo_svg'), PATHINFO_DIRNAME);
+            $filename = pathinfo(get_config($this->modulename, 'qrcode_logo_svg'), PATHINFO_BASENAME);
         }
 
         $fs = get_file_storage();
         $file = $fs->get_file(
             \context_system::instance()->id,
-            'assignsubmission_qrcodea',
+            $this->modulename,
             $filearea,
             0,
             $filepath,
@@ -332,41 +333,19 @@ class qrcodegenerator {
     }
 
     /**
-     * Outputs file headers to initialise the download of the file / display the file.
-     * @param bool $download true, if the QR code should be downloaded
+     * Outputs the QR code.
      */
-    protected function send_headers($download) {
-        // Caches file for 1 month.
-        header('Cache-Control: public, max-age:2628000');
-
-        if ($this->format == 2) {
-            header('Content-Type: image/png');
-        } else {
-            header('Content-Type: image/svg+xml');
-        }
-
-        // Checks if the image is downloaded or displayed.
-        if ($download) {
-            // Output file header to initialise the download of the file.
-            // filename: QR Code-%s.(svg|png), where %s is derived from the course's fullname.
-            if ($this->format == 2) {
-                header('Content-Disposition: attachment; filename="QR Code-' .
-                    clean_param($this->course->fullname, PARAM_FILE) . '.png"');
-            } else {
-                header('Content-Disposition: attachment; filename="QR Code-' .
-                    clean_param($this->course->fullname, PARAM_FILE) . '.svg"');
-            }
-        }
-    }
-
-    /**
-     * Outputs (downloads or displays) the QR code.
-     * @param bool $download true, if the QR code should be downloaded
-     */
-    public function output_image($download) {
+    public function output_image() {
         $this->create_image();
-        // $this->send_headers($download);
-        return file_get_contents($this->file);
+
+        // Retuen the svg image content.
+        if ($this->get_format() == 1) {
+            $image = file_get_contents($this->file);
+        } else {
+            // Return the b64 png file content.
+            $image = base64_encode(file_get_contents($this->file));
+        }
+        return $image;
     }
 
     /**

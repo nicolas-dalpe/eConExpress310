@@ -23,10 +23,19 @@
     Example context (json):
     {
         "legend": text    "The instruction how to use the QR Code."
-        "qrcode": svg+xml "The SVG content of the QR Code."
+        "qrcodesvg": svg+xml "The SVG content of the QR Code."
+        "qrcodepng": image/png "The PNG content of the QR Code."
     }
 }}
-<figure class="figure">
-    {{{ qrcode }}}
-    <figcaption class="figure-caption">{{ legend }}</figcaption>
+<figure class="figure k1-qrcode">
+
+    {{#qrcodesvg}}
+    {{{ qrcodesvg }}}
+    {{/qrcodesvg}}
+
+    {{#qrcodepng}}
+    <img src="data:image/png;base64,{{{ qrcodepng }}}" alt="{{ legend }}" />
+    {{/qrcodepng}}
+
+    <figcaption class="k1-qrcode-caption">{{ legend }}</figcaption>
 </figure>

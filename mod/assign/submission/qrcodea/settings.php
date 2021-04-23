@@ -52,13 +52,23 @@ if (isset($CFG->maxbytes)) {
     );
 }
 
+$settings->add(
+    new admin_setting_configselect(
+        'assignsubmission_qrcodea/maxbytes',
+        new lang_string('maximumsubmissionsize', 'assignsubmission_qrcodea'),
+        new lang_string('configmaxbytes', 'assignsubmission_qrcodea'),
+        $CFG->maxbytes,
+        get_max_upload_sizes($CFG->maxbytes, 0, 0, $maxbytes)
+    )
+);
+
 // Set the QR Code size in pixel.
 $settings->add(
-    new admin_setting_configtext('assignsubmission_qrcodea/qrcode_size',
-        new lang_string('qrcodesize', 'assignsubmission_qrcodea'),
-        new lang_string('qrcodesize_help', 'assignsubmission_qrcodea'),
-        300,
-        PARAM_INT
+    new admin_setting_configselect('assignsubmission_qrcodea/qrcode_format',
+        new lang_string('qrcodeformata', 'assignsubmission_qrcodea'),
+        new lang_string('qrcodeformata_help', 'assignsubmission_qrcodea'),
+        1,
+        array('1' => 'SVG', '2' => 'PNG')
     )
 );
 
@@ -67,12 +77,26 @@ $svglogo = new admin_setting_configstoredfile(
     'assignsubmission_qrcodea/qrcode_logo_svg',
     new lang_string('qrcodelogosvg', 'assignsubmission_qrcodea'),
     new lang_string('qrcodelogosvg_help', 'assignsubmission_qrcodea'),
-    'assignsubmission_qrcodea_logo',
+    'assignsubmission_qrcodea_logo_svg',
     0,
     array('maxfiles' => 1, 'accepted_types' => ['.svg'])
 );
 
 // Callback to empty the QR Code cache when the logo is updated.
 $svglogo->set_updatedcallback('assignsubmission_qrcodea_reset_qrcode_cache');
-
 $settings->add($svglogo);
+
+// Set the PNG logo file.
+$pnglogo = new admin_setting_configstoredfile(
+    'assignsubmission_qrcodea/qrcode_logo_png',
+    new lang_string('qrcodelogopng', 'assignsubmission_qrcodea'),
+    new lang_string('qrcodelogopng_help', 'assignsubmission_qrcodea'),
+    'assignsubmission_qrcodea_logo_png',
+    0,
+    array('maxfiles' => 1, 'accepted_types' => ['.png'])
+);
+
+// Callback to empty the QR Code cache when the logo is updated.
+$pnglogo->set_updatedcallback('assignsubmission_qrcodea_reset_qrcode_cache');
+$settings->add($pnglogo);
+
