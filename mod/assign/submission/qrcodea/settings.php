@@ -64,6 +64,16 @@ $settings->add(
 
 // Set the QR Code size in pixel.
 $settings->add(
+    new admin_setting_configtext('assignsubmission_qrcodea/qrcode_size',
+        new lang_string('qrcodesize', 'assignsubmission_qrcodea'),
+        new lang_string('qrcodesize_help', 'assignsubmission_qrcodea'),
+        300,
+        PARAM_INT
+    )
+);
+
+// Set the prefered file format.
+$settings->add(
     new admin_setting_configselect('assignsubmission_qrcodea/qrcode_format',
         new lang_string('qrcodeformata', 'assignsubmission_qrcodea'),
         new lang_string('qrcodeformata_help', 'assignsubmission_qrcodea'),
