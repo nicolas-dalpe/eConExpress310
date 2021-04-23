@@ -24,6 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2021042100;
+$plugin->version   = 2021042201;
 $plugin->requires  = 2020060900;
 $plugin->component = 'assignsubmission_qrcodea';

@@ -409,12 +409,6 @@ class assign_submission_qrcodea extends assign_submission_plugin {
 
         $qrcodeoptions = new stdClass();
 
-        // QR Code image format 1 = svg, 2 = png.
-        $qrcodeoptions->format = 1;
-
-        // Size of the QR Code in pixel.
-        // $qrcodeoptions->size = 300;
-
         // Course id.
         $qrcodeoptions->courseid = $COURSE->id;
 
@@ -425,14 +419,20 @@ class assign_submission_qrcodea extends assign_submission_plugin {
         $qrcodegenerator = new qrcodegenerator($qrcodeoptions);
 
         // Output the QR Code image.
-        $qrcode = $qrcodegenerator->output_image(false);
+        $qrcode = $qrcodegenerator->output_image();
 
         // Prepare the data for the template.
         $tpldata = new stdClass();
-        $tpldata->legend = get_string('instruction_qrcode', 'assignsubmission_qrcodea');
-        $tpldata->qrcode = $qrcode;
+        $tpldata->legend = new lang_string('instruction_qrcode', 'assignsubmission_qrcodea');
 
-        // Render the QR Code renderable.
+        // Set the QR Code format.
+        if ($qrcodegenerator->get_format() == 1) {
+            $tpldata->qrcodesvg = $qrcode;
+        } else {
+            $tpldata->qrcodepng = $qrcode;
+        }
+
+        // Render the QR Code.
         $renderable = new \assignsubmission_qrcodea\output\qrcode_page($tpldata);
         $output = $PAGE->get_renderer('assignsubmission_qrcodea');
         $qrcodeoutput = $output->render($renderable);
