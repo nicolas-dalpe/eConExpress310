@@ -41,6 +41,9 @@ class qtype_hybrid_edit_form extends question_edit_form {
         $mform->addElement('header', 'responseoptions', get_string('responseoptions', 'qtype_hybrid'));
         $mform->setExpanded('responseoptions');
 
+        // Set the default mark to 0.
+        $mform->setDefault('defaultmark', 0);
+
         // Response format.
         $mform->addElement('select', 'responseformat',
                 get_string('responseformat', 'qtype_hybrid'), $qtype->response_formats());
