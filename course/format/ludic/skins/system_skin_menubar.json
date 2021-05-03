@@ -1,0 +1,9 @@
+{
+    "visible": 0,
+    "domain": "course_module",
+    "skintype": "menubar",
+    "skinname": "menubar",
+    "title": "Useful link",
+    "description": "Content is included in the Useful links menu instead of in the page body.",
+    "css": ""
+}

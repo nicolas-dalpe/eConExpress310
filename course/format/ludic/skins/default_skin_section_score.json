@@ -1,0 +1,46 @@
+{
+    "domain": "section",
+    "skintype": "score",
+    "skinname": "bundled",
+    "title": "Score with Trophies",
+    "description": "Accumulated points from activities rewarded with varying trophies",
+    "css": " \n .skin-text.score{display: block;position: absolute;bottom: 0px;width: 100%;text-align: center;} \n \n ",
+    "steps": [
+        {
+            "threshold": 0,
+            "background": "default-user-skins\/score_and_trophies\/score_and_trophies-1",
+            "text": "",
+            "css": ""
+        },
+        {
+            "threshold": 200,
+            "background": "default-user-skins\/score_and_trophies\/score_and_trophies-2",
+            "text": "",
+            "css": ""
+        },
+        {
+            "threshold": 400,
+            "background": "default-user-skins\/score_and_trophies\/score_and_trophies-3",
+            "text": "",
+            "css": ""
+        },
+        {
+            "threshold": 600,
+            "background": "default-user-skins\/score_and_trophies\/score_and_trophies-4",
+            "text": "",
+            "css": ""
+        },
+        {
+            "threshold": 800,
+            "background": "default-user-skins\/score_and_trophies\/score_and_trophies-5",
+            "text": "",
+            "css": ""
+        },
+        {
+            "threshold": 1000,
+            "background": "default-user-skins\/score_and_trophies\/score_and_trophies-6",
+            "text": "",
+            "css": ""
+        }
+    ]
+}
