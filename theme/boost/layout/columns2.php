@@ -52,7 +52,12 @@ $templatecontext = [
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
+    'isdashboard' => false
 ];
+
+if ($PAGE->title === 'Dashboard') {
+    $templatecontext['isdashboard'] = true;
+}
 
 $nav = $PAGE->flatnav;
 $templatecontext['flatnavigation'] = $nav;
