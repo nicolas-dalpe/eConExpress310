@@ -93,22 +93,7 @@
     {{> theme_boost/footer }}
 </div>
 
-    {{#isdashboard}}
-        <!-- Add Watson only on the Dashboard -->
-        <script>
-            window.watsonAssistantChatOptions = {
-                integrationID: "ae964727-2121-4bbf-92dd-24071ecf4a53", // The ID of this integration.
-                region: "eu-gb", // The region your integration is hosted in.
-                serviceInstanceID: "b3f31bca-e7ac-4253-99b1-473807602618", // The ID of your service instance.
-                onLoad: function(instance) { instance.render(); }
-            };
-            setTimeout(function(){
-                const t=document.createElement('script');
-                t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
-                document.head.appendChild(t);
-            });
-        </script>
-    {{/isdashboard}}
+    
 </body>
 </html>
 {{#js}}
