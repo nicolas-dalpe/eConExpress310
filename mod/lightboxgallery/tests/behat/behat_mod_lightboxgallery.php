@@ -19,8 +19,8 @@
  *
  * @package    mod_lightboxgallery
  * @category   test
- * @copyright  2016 Blackboard
- * @author     Adam Olley <adam.olley@netspot.com.au>
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
+ * @author     Adam Olley <adam.olley@openlms.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -35,7 +35,7 @@ use Behat\Behat\Context\Step\Given as Given,
  *
  * @package    mod_lightboxgallery
  * @category   test
- * @copyright  2016 NetSpot Pty Ltd
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class behat_mod_lightboxgallery extends behat_base {

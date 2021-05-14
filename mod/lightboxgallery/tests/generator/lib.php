@@ -19,7 +19,7 @@
  *
  * @package    mod_lightboxgallery
  * @category   test
- * @copyright  2017 Blackboard Inc.
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  *
  * @package    mod_lightboxgallery
  * @category   test
- * @copyright  2017 Blackboard Inc.
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mod_lightboxgallery_generator extends testing_module_generator {

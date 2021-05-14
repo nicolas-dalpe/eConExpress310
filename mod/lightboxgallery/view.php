@@ -19,7 +19,7 @@
  * Prints a particular instance of lightboxgallery
  *
  * @package   mod_lightboxgallery
- * @copyright 2011 John Kelsh <john.kelsh@netspot.com.au>
+ * @copyright Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
