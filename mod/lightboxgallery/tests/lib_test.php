@@ -18,8 +18,8 @@
  * Unit tests for (some of) mod/lightboxgallery/lib.php.
  *
  * @package    mod_lightboxgallery
- * @author     Adam Olley <adam.olley@netspot.com.au>
- * @copyright  2012 NetSpot Pty Ltd
+ * @author     Adam Olley <adam.olley@openlms.net>
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 
@@ -33,7 +33,7 @@ require_once($CFG->dirroot . '/mod/lightboxgallery/locallib.php');
 /**
  * Unit tests for (some of) mod/lightboxgallery/lib.php.
  *
- * @copyright  2012 NetSpot Pty Ltd
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU Public License
  */
 class mod_lightboxgallery_lib_testcase extends advanced_testcase {
@@ -44,8 +44,6 @@ class mod_lightboxgallery_lib_testcase extends advanced_testcase {
 
     public function test_lightboxgallery_edit_types() {
         $this->resetAfterTest();
-
-        $disabledplugins = explode(',', get_config('lightboxgallery', 'disabledplugins'));
 
         $types = ['caption', 'crop', 'delete', 'flip', 'resize', 'rotate', 'tag', 'thumbnail'];
 

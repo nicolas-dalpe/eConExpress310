@@ -18,7 +18,7 @@
  * The mod_lightboxgallery course searched event.
  *
  * @package    mod_lightboxgallery
- * @copyright  2014 NetSpot Pty Ltd
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -38,7 +38,7 @@ defined('MOODLE_INTERNAL') || die();
  *
  * @package    mod_lightboxgallery
  * @since      Moodle 2.7
- * @copyright  2014 NetSpot Pty Ltd
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class gallery_searched extends \core\event\base {

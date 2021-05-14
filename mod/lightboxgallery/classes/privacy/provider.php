@@ -18,6 +18,7 @@
  * Privacy Subsystem implementation for mod_lightboxgallery.
  *
  * @package    mod_lightboxgallery
+ * @copyright  Copyright (c) 2021 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -125,9 +126,11 @@ class provider implements
 
         $params = ['userid' => $user->id, 'contextlevel' => CONTEXT_MODULE] + $contextparams;
 
-        // Reference to the lightboxgallery activity seen in the last iteration of the loop. By comparing this with the current record, and
-        // because we know the results are ordered, we know when we've moved to the answers for a new lightboxgallery activity and therefore
-        // when we can export the complete data for the last activity.
+        // Reference to the lightboxgallery activity seen in the last iteration
+        // of the loop. By comparing this with the current record, and because
+        // we know the results are ordered, we know when we've moved to the
+        // answers for a new lightboxgallery activity and therefore when we can
+        // export the complete data for the last activity.
         $lastcmid = null;
 
         $lbgcomments = $DB->get_recordset_sql($sql, $params);

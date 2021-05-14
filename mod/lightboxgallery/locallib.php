@@ -181,10 +181,9 @@ function lightboxgallery_index_thumbnail($courseid, $gallery, $newimage = null) 
     if (is_object($storedfile) && is_null($newimage)) {
         // Grab the index.
         $index = $storedfile;
-    } else {
+    } else if (!is_null($newimage) or $files = $fs->get_area_files($context->id, 'mod_lightboxgallery', 'gallery_images')) {
         // Get first image and create an index for that.
         if (is_null($newimage)) {
-            $files = $fs->get_area_files($context->id, 'mod_lightboxgallery', 'gallery_images');
             $file = array_shift($files);
             while (substr($file->get_mimetype(), 0, 6) != 'image/') {
                 $file = array_shift($files);
@@ -194,6 +193,16 @@ function lightboxgallery_index_thumbnail($courseid, $gallery, $newimage = null) 
             $image = $newimage;
         }
         $index = $image->create_index();
+    } else {
+        $fileinfo = [
+            'contextid' => $context->id,
+            'component' => 'mod_lightboxgallery',
+            'filearea'  => 'gallery_index',
+            'itemid'    => 0,
+            'filepath'  => '/',
+            'filename'  => 'index.png'
+        ];
+        $index = $fs->create_file_from_pathname($fileinfo, $CFG->dirroot . '/mod/lightboxgallery/pix/index.png');
     }
     $path = $CFG->wwwroot.'/pluginfile.php/'.$context->id.'/mod_lightboxgallery/gallery_index/'.
                 $index->get_itemid().$index->get_filepath().$index->get_filename();
