@@ -22,8 +22,8 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require(__DIR__.'/../../config.php');
-require_once(__DIR__.'/lib.php');
+require(__DIR__ . '/../../config.php');
+require_once(__DIR__ . '/lib.php');
 
 // Course module id.
 $id = optional_param('id', 0, PARAM_INT);
@@ -49,11 +49,7 @@ require_course_login($course, true, $cm);
 require_capability('mod/it:view', $modulecontext);
 
 // Verify course context.
-<<<<<<< HEAD
 $h5pcm = get_coursemodule_from_id('hvp', 212);
-=======
-$h5pcm = get_coursemodule_from_id('hvp', 7);
->>>>>>> 8e8202bab94... QRMOOD-6 - Put back local commander, mod_it, mod_hvp
 if (!$h5pcm) {
     print_error('invalidcoursemodule');
 }
@@ -107,11 +103,7 @@ $contenthash = $file->contenthash;
 
 // Get the transcript file path in  Moodle data folder.
 $transcriptPath = sprintf(
-<<<<<<< HEAD
     '/var/moodlecoursesdata/filedir/%s/%s/%s',
-=======
-    '/var/www/md_ec_moodle310/filedir/%s/%s/%s',
->>>>>>> 8e8202bab94... QRMOOD-6 - Put back local commander, mod_it, mod_hvp
     substr($contenthash, 0, 2),
     substr($contenthash, 2, 2),
     $contenthash
@@ -154,11 +146,8 @@ if (file_exists($transcriptPath)) {
             $c[$i]['content'] = format_text($line, FORMAT_HTML);
         }
     }
-<<<<<<< HEAD
 } else {
-	echo "no file";
-=======
->>>>>>> 8e8202bab94... QRMOOD-6 - Put back local commander, mod_it, mod_hvp
+    echo "no file";
 }
 
 // Add bookmarks.
@@ -173,7 +162,7 @@ foreach ($c as $ckey => $line) {
     foreach ($bookmarks as $key => $bookmark) {
 
         if ($bookmark['time'] <= $line['startSecond']) {
-            array_splice($c, $ckey-1, 0, array($bookmark));
+            array_splice($c, $ckey - 1, 0, array($bookmark));
             unset($bookmarks[$key]);
             continue;
         }
@@ -183,14 +172,16 @@ echo '<p id="subtitle">';
 
 foreach ($c as $key => $sub) {
     if (isset($c[$key]['content'])) {
-        echo sprintf('<span data-index="%d" data-min="%d" data-max="%d">%s</span>',
+        echo sprintf(
+            '<span data-index="%d" data-min="%d" data-max="%d">%s</span>',
             $sub['index'],
             $sub['startSecond'],
             $sub['endSecond'],
             $sub['content']
         );
     } else {
-        echo sprintf('<br><br><span class="bookmark" data-min="%d">%s</span><br>',
+        echo sprintf(
+            '<br><br><span class="bookmark" data-min="%d">%s</span><br>',
             $sub['startSecond'],
             $sub['label']
         );
