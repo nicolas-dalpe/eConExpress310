@@ -100,7 +100,32 @@
                 integrationID: "ae964727-2121-4bbf-92dd-24071ecf4a53", // The ID of this integration.
                 region: "eu-gb", // The region your integration is hosted in.
                 serviceInstanceID: "b3f31bca-e7ac-4253-99b1-473807602618", // The ID of your service instance.
-                onLoad: function(instance) { instance.render(); }
+                debug: true,
+                openChatByDefault: true,
+                sessionHistoryBeta: false,
+                onLoad: function(instance) {
+                    instance.render();
+
+                    setTimeout(function() {
+                        var button = document.createElement('button');
+                        button.textContent = 'Clear History';
+                        button.addEventListener('click', function() {
+                            //console.log(instance.getState());
+                            for (var i = 0; i < sessionStorage.length; i++){
+                                //console.log(sessionStorage.key(i));
+                                sessionStorage.removeItem(sessionStorage.key(i));
+                            }
+                            
+                            instance.destroySession();
+                            var wac_messages = Array.from(document.querySelectorAll('.WAC__message:not(.WAC__message-0)'));
+                            wac_messages.forEach(function(wac_message) {
+                                wac_message.remove();
+                            });
+                        });
+                        document.getElementById('WAC__header-name').append(button);
+                    }, 1000);
+                    
+                }
             };
             setTimeout(function(){
                 const t=document.createElement('script');
@@ -108,6 +133,20 @@
                 document.head.appendChild(t);
             });
         </script>
+        <!-- Add Watson only on the Dashboard -->
+        <!-- OLD SCRIPT <script>
+            window.watsonAssistantChatOptions = {
+                integrationID: "ae964727-2121-4bbf-92dd-24071ecf4a53", // The ID of this integration.
+                region: "eu-gb", // The region your integration is hosted in.
+                serviceInstanceID: "b3f31bca-e7ac-4253-99b1-473807602618", // The ID of your service instance.
+                onLoad: function(instance) { instance.render(); }
+            };
+            setTimeout(function(){
+                const t=document.createElement('script');
+                t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+                document.head.appendChild(t);
+            });
+        </script> -->
     {{/isdashboard}}
 </body>
 </html>
