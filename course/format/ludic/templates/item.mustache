@@ -1,0 +1,67 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+<div id="{{selectorid}}"
+    {{! Class. }}
+     class="item {{itemtype}} {{#link}}has-link{{/link}} {{itemtype}}-{{order}}{{#draggable}} ludic-drag{{/draggable}}{{#droppable}} ludic-drop{{/droppable}}{{#isnotvisible}}
+    is-not-visible{{/isnotvisible}}{{#parent}} parent{{/parent}}{{#child}} child{{/child}}{{#editmode}} in-edition{{/editmode}}{{#selected}} selected{{/selected}}{{#parentid}} parent-id-{{parentid}}{{/parentid}}{{#icons}} has-icon-{{position}}{{/icons}}"
+    {{#draggable}} draggable="true"{{/draggable}}
+     title="{{tooltip}}"
+     data-id="{{id}}"
+     data-type="{{itemtype}}"
+     data-order="{{order}}"
+    {{#parentid}} data-parentid="{{parentid}}"{{/parentid}}
+    {{#skinid}} data-skinid="{{skinid}}"{{/skinid}}
+    {{#skintype}} data-skintype="{{skintype}}"{{/skintype}}
+    {{#link}} data-link="{{link}}"{{/link}}
+
+    {{! Actions. }}
+    {{#propertiesaction}} data-propertiesaction="{{propertiesaction}}"{{/propertiesaction}}
+    {{#action}} data-action="{{action}}"{{/action}}
+    {{#controller}} data-controller="{{controller}}"{{/controller}}
+    {{#callback}} data-callback="{{callback}}"{{/callback}}
+>
+    {{! Required for moodle drag and drop javascript. }}
+    {{#requiresectionhtmlforjs}}<div class="content hide"><ul class="section"></ul></div>{{/requiresectionhtmlforjs}}
+
+    {{! Icons - 4 icons maximum }}
+    {{#icons}}
+        <div class="item-icon position-{{position}} {{classes}}" title="{{imgalt}}" style="background-image: url('{{imgsrc}}')" aria-label="{{imgalt}}">
+            {{#link}}<a href="{{link}}"></a>{{/link}}
+        </div>
+    {{/icons}}
+
+
+    {{! Main image of item. }}
+    {{#imgsrc}}
+        <div class="item-img-container tile-img" style="background-image:url({{imgsrc}})" aria-label="{{imgalt}}"></div>
+    {{/imgsrc}}
+
+    {{! Item content. }}
+    {{#content}}
+        <div class="item-content-container">
+            {{{content}}}
+        </div>
+    {{/content}}
+
+    {{! Item title. }}
+    {{#title}}
+        <div class="item-title">
+            {{title}}
+        </div>
+    {{/title}}
+
+</div>

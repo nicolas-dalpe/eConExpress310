@@ -1,0 +1,47 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{#css}}<style type="text/css">{{{css}}}</style>{{/css}}
+<div id="{{skinid}}" class="full-tile skin skin-type-{{skintype}}{{#classes}} {{class}}{{/classes}}">
+
+    <div class="sub-tile skin-tile" >
+        <div class="skin-img-container viewmode-{{viewmode}}">
+            {{#images}}
+                <div class="skin-img{{#class}} {{class}}{{/class}}" style="background-image: url({{imgsrc}});{{imgcss}}" aria-label="{{imgalt}}"></div>
+            {{/images}}
+        </div>
+        {{#texts}}
+            <div class="skin-text{{#class}} {{class}}{{/class}}">{{{text}}}</div>
+        {{/texts}}
+        {{#hiddentexts}}
+        <div class="skin-text skin-hidden-text {{#class}} {{class}}{{/class}}">{{{text}}}</div>
+        {{/hiddentexts}}
+        {{#emptydiv}}
+            <div class="skin-empty-div div-{{number}}"></div>
+        {{/emptydiv}}
+    </div>
+
+    {{#extrahtml}}
+    <div class="skin-extra-html {{{classes}}}">
+        {{{content}}}
+    </div>
+    {{/extrahtml}}
+
+    <div class="sub-tile title-tile">
+        <div class="skin-text" title="{{title}}">{{title}}</div>
+    </div>
+
+</div>
