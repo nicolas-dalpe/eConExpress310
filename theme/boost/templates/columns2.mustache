@@ -136,6 +136,15 @@
                             instance.send(mockSendObject, sendOptions).catch(function(error) {
                                 console.log(error);
                             });
+
+                            setTimeout(function() {
+                                let messagesToDelete = Array.from(document.querySelectorAll('.WAC__message:not(.WAC__message--lastMessage)'));
+                                messagesToDelete.forEach(function(message) {
+                                    message.remove();
+                                });
+                            }, 1500);
+
+                            
                         });
                         document.getElementById('WAC__header-name').append(button);
                     }, 2000);
