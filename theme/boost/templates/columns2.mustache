@@ -95,6 +95,12 @@
 
     {{#isdashboard}}
         <!-- Add Watson only on the Dashboard -->
+        <style>
+            #WACContainer.WACContainer .WAC__header__button {
+                background: none;
+                float: right;
+            }
+        </style>
         <script>
             window.watsonAssistantChatOptions = {
                 integrationID: "ae964727-2121-4bbf-92dd-24071ecf4a53", // The ID of this integration.
@@ -106,25 +112,29 @@
                 onLoad: function(instance) {
                     instance.render();
 
+                    const mockSendObject = {
+                        "input": {
+                            "message_type": "text",
+                            "text": "SYSTEM_CLEAN",
+                        }
+                    };
+
+                    const sendOptions = {
+                        "silent": true
+                    }
+
                     setTimeout(function() {
                         var button = document.createElement('button');
+                        button.className = "WAC__header__button";
                         button.textContent = 'Clear History';
                         button.addEventListener('click', function() {
-                            //console.log(instance.getState());
-                            for (var i = 0; i < sessionStorage.length; i++){
-                                //console.log(sessionStorage.key(i));
-                                sessionStorage.removeItem(sessionStorage.key(i));
-                            }
-                            
-                            instance.destroySession();
-                            var wac_messages = Array.from(document.querySelectorAll('.WAC__message:not(.WAC__message-0)'));
-                            wac_messages.forEach(function(wac_message) {
-                                wac_message.remove();
+                            console.log('click')
+                            instance.send(mockSendObject, sendOptions).catch(function(error) {
+                                console.log(error);
                             });
                         });
                         document.getElementById('WAC__header-name').append(button);
-                    }, 1000);
-                    
+                    }, 2000);
                 }
             };
             setTimeout(function(){
