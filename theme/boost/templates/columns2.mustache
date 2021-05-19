@@ -96,12 +96,74 @@
     {{#isdashboard}}
         <!-- Add Watson only on the Dashboard -->
         <style>
+            /* Add style to new Clear history button */
             #WACContainer.WACContainer .WAC__header__button {
                 background: none;
                 float: right;
             }
+
+            /* Add mouse over on image to show that you can click on it */
+            #WACContainer.WACContainer .WAC__image:hover {
+                cursor: pointer;
+            }
+
+            /* Image modal */
+            #WACContainer.WACContainer .WAC__image__modal {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 100000001;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+            #WACContainer.WACContainer .WAC__image__modal:hover,
+            #WACContainer.WACContainer .WAC__image__modal img:hover {
+                cursor: pointer;
+            }
+
+            #WACContainer.WACContainer .WAC__image__modal img {
+                margin: 20px;
+                display: block;
+                max-width: 100%;
+                height: auto;
+                backface-visibility: visible;
+            }
+
+            #WACContainer.WACContainer .WAC__image__modal__backdrop {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 100000000;
+            }
+
         </style>
         <script>
+            document.addEventListener('click',function(e){
+                if (e.target && e.target.classList.contains('WAC__image')) {
+                    let image = document.createElement('img');
+                        image.src = e.target.src;
+                        image.className = "WAC__image__modal__img";
+                    let modalBackdrop = document.createElement('div');
+                        modalBackdrop.className = "WAC__image__modal__backdrop";
+                    let modal = document.createElement('div');
+                        modal.className = "WAC__image__modal";
+                        modal.append(image);
+                    document.getElementById('WACContainer').append(modalBackdrop);
+                    document.getElementById('WACContainer').append(modal);
+                }
+                if (e.target && (e.target.classList.contains('WAC__image__modal') || e.target.classList.contains('WAC__image__modal__backdrop') || e.target.classList.contains('WAC__image__modal__img'))) {
+                    document.querySelector('.WAC__image__modal').remove();
+                    document.querySelector('.WAC__image__modal__backdrop').remove();
+                }
+            });
+
             window.watsonAssistantChatOptions = {
                 integrationID: "ae964727-2121-4bbf-92dd-24071ecf4a53", // The ID of this integration.
                 region: "eu-gb", // The region your integration is hosted in.
@@ -130,8 +192,6 @@
                                 "silent": true
                             }
 
-                            console.log('mockSendObject', mockSendObject);
-                            console.log('sendOptions', sendOptions);
 
                             instance.send(mockSendObject, sendOptions).catch(function(error) {
                                 console.log(error);
