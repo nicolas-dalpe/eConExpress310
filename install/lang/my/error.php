@@ -29,7 +29,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['language'] = 'زبان';
-$string['next'] = 'اگلے';
-$string['previous'] = 'پچھلا';
-$string['reload'] = 'دوبارہ لوڈ کریں';
+$string['cannotcreatetempdir'] = 'temp directory ကို မတည်ဆောက်နိုင်ပါ၊၊';
+$string['cannotdownloadcomponents'] = 'အစိတ်အပိုင်းများကို ဒေါင်းလုတ်ဆွဲမရပါ။';
+$string['cannotdownloadzipfile'] = 'ZIP ဖိုင်ကိုဒေါင်းလုတ်ဆွဲမရပါ။';
+$string['cannotfindcomponent'] = 'အစိတ်အပိုင်းကို ရှာဖွေမတွေ့ရှိပါ။';

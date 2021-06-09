@@ -29,7 +29,5 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['language'] = 'زبان';
-$string['next'] = 'اگلے';
-$string['previous'] = 'پچھلا';
-$string['reload'] = 'دوبارہ لوڈ کریں';
+$string['clitypevalue'] = 'တန်ဖိုး ထည့်သွင်းပါ';
+$string['clitypevaluedefault'] = 'တန်ဖိုး ထည့်သွင်းပါ၊ ပုံသေတန်ဖိုး ({$a}) ကိုအသုံးပြုလိုပါက ENTER ကိုနှိပ်ပါ';
