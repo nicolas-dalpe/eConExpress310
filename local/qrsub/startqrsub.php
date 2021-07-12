@@ -28,11 +28,7 @@ require_once(__DIR__ . '/../../config.php');
 // Get submitted parameters.
 $id = required_param('cmid', PARAM_INT); // Course module id
 
-exit('before');
-
 require_login();
-
-exit('after');
 
 // Generate the QR Code URL.
 $url = new moodle_url('/local/qrsub/startattempt.php', array(

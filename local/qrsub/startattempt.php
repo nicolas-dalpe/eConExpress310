@@ -44,27 +44,25 @@ if (!$course = $DB->get_record('course', array('id' => $cm->course))) {
 }
 
 $quizobj = quiz::create($cm->instance, $USER->id);
+
+///////////////////////////////////////////////////////
+// QRMOD-11 - POC a file sub in a Hybrid question type.
+// Set the page URL to the current URL so the student is
+// redirected here if he is not logged in.
+$pageurl = new \moodle_url('/local/qrsub/startattempt.php', array('cmid' => $id));
+$PAGE->set_url($pageurl->out(false));
+
+// Original.
 // This script should only ever be posted to, so set page URL to the view page.
-$PAGE->set_url($quizobj->view_url());
+// $PAGE->set_url($quizobj->view_url());
+// QRMOD-11.
+
 // During quiz attempts, the browser back/forwards buttons should force a reload.
 $PAGE->set_cacheable(false);
 
-$a = $quizobj->get_course();
-$b = $quizobj->get_cm();
-
 // Check login and sesskey.
 require_login($quizobj->get_course(), false, $quizobj->get_cm());
-
-/**
- * @todo Reinstore the session check.
- * startattempt.php expect to receive the session id as param ?sesskey.
- * In order to do so, the QR Code must first redirect to startqrsub.php
- * to then redirect to this page with the ?sesskey added to the URL.
- * This double redirect seems to cause problem on mobile when the
- * student is not already logged in.
- */
-// require_sesskey();
-
+require_sesskey();
 $PAGE->set_heading($quizobj->get_course()->fullname);
 
 // If no questions have been set up yet redirect to edit.php or display an error.

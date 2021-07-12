@@ -71,7 +71,7 @@ class theme_boost_mod_quiz_renderer extends \mod_quiz_renderer {
             $qrcodegenerator = new qrcodegenerator($qrcodeoptions);
 
             // Generate the QR Code URL.
-            $url = new moodle_url('/local/qrsub/startattempt.php', array(
+            $url = new moodle_url('/local/qrsub/startqrsub.php', array(
                 'cmid' => $cm->id
             ));
 
