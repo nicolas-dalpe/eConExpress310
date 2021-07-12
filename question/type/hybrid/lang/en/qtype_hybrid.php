@@ -63,3 +63,9 @@ $string['responsetemplate_help'] = 'Any text entered here will be displayed in t
 $string['tmp_answer'] = 'I have completed answering this question on paper.';
 $string['chkboxlabel'] = 'I have completed answering this question on paper.';
 $string['nline'] = '{$a} line';
+
+// New strings
+$string['requiredfiles'] = 'Nb. file(s) required: {$a->attachmentsrequired}';
+$string['maximumfiles'] = 'Nb. file(s) allowed: {$a->attachments}';
+$string['addfile'] = 'Add a new file +';
+$string['uploadedfiles'] = 'Uploaded file(s)';

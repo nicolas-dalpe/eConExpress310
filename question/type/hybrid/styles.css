@@ -1,40 +1,13 @@
-.que.hybrid textarea.qtype_hybrid_response {
-    width: 100%;
-}
+/* Hide the maximum number of file to upload in the question attempt page. */
+body#page-mod-quiz-attempt .que.hybrid div.qtype_hybrid_builtin_answers .qtype_hybrid_attachments_maximum ,
 
-.que.hybrid textarea.qtype_hybrid_response.qtype_hybrid_plain {
-    white-space: pre-wrap;
-    font: inherit;
-}
+/* Hide the required number of file to upload in the question attempt page. */
+body#page-mod-quiz-attempt .que.hybrid div.qtype_hybrid_builtin_answers .qtype_hybrid_attachments_required,
 
-.que.hybrid textarea.qtype_hybrid_plain_response.qtype_hybrid_plain_monospaced {
-    white-space: pre;
-    font-family: Andale Mono, Monaco, Courier New, DejaVu Sans Mono, monospace;
-}
+/* Hide the Moodle file manager in the question attempt page. */
+.que.hybrid div.qtype_hybrid_attachments,
 
-.que.hybrid .qtype_hybrid_plain_response {
-    min-height: 3em;
-}
-
-.que.hybrid .qtype_hybrid_plain_response.readonly {
-    background-color: white;
-}
-
-.que.hybrid div.qtype_hybrid_plain_response textarea {
-    width: 100%;
-}
-
-/* Hide the checkbox on the quiz review. */
-#page-mod-quiz-review .que.hybrid .qtype_hybrid_student_answers{
-    display: none;
-}
-
-/* Display the student answer in the quiz review. */
-#page-mod-quiz-review .que.hybrid .qtype_hybrid_builtin_answers{
-    display: inherit;
-}
-
-/* Hide the question type builtin answer (textarea + attachment). */
-.que.hybrid div.qtype_hybrid_builtin_answers {
+/* Hide QRSub file manager in the question attempt page. */
+body#page-mod-quiz-attempt .que.hybrid div.qtype_hybrid_builtin_answers .attachments {
     display: none;
 }

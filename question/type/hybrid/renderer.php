@@ -40,17 +40,12 @@ class qtype_hybrid_renderer extends qtype_renderer {
         $question = $qa->get_question();
         $responseoutput = $question->get_format_renderer($this->page);
 
-        // Add the js to place the answer in the txt area when checking the checkbox.
-        $this->page->requires->js_call_amd('qtype_hybrid/helper', 'init',
-            [get_string('tmp_answer', 'qtype_hybrid')]
-        );
-
         // Answer field.
         $step = $qa->get_last_step_with_qt_var('answer');
 
         if (!$step->has_qt_var('answer') && empty($options->readonly)) {
             // Question has never been answered, fill it with response template.
-            $step = new question_attempt_step(array('answer' => $question->responsetemplate));
+            $step = new question_attempt_step(array('answer'=>$question->responsetemplate));
         }
 
         if (empty($options->readonly)) {
@@ -73,14 +68,11 @@ class qtype_hybrid_renderer extends qtype_renderer {
         }
 
         $result = '';
+        $result .= html_writer::tag('div', $question->format_questiontext($qa),
+                array('class' => 'qtext'));
 
-        // Add the question text.
-        $result .= html_writer::tag(
-            'div',
-            $question->format_questiontext($qa),
-            array('class' => 'qtext')
-        );
-
+        ////////////////////////////////////////////////
+        // QRMOOD-16 - As a student, I want to have placeholders for the upload files
         // Add the studentanswer div so it is easier to hide it in css.
         $result .= html_writer::start_tag('div', array('class' => 'qtype_hybrid_builtin_answers'));
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));
@@ -89,21 +81,62 @@ class qtype_hybrid_renderer extends qtype_renderer {
         $result .= html_writer::end_tag('div'); // End .ablock.
         $result .= html_writer::end_tag('div'); // End .qtype_hybrid_builtin_answers.
 
-        // Add the student answer checkbox.
-        $result .= html_writer::start_tag('div', array('class' => 'qtype_hybrid_student_answers'));
+        // New section
+        $result .= html_writer::start_tag('div', array('class' => 'qtype_hybrid_attachments'));
 
-        $result .= html_writer::start_tag('div', array('class' => 'ablock'));
+        // Add new file button
+        $result .= html_writer::tag('a', get_string('addfile', 'qtype_hybrid'), array('class' => 'btn btn-secondary js-add-file'));
 
-        // Add the checkbox.
-        $checkboxattr = array('type' => 'checkbox', 'id' => 'studentanswered_chk');
-        $result .= html_writer::empty_tag('input', $checkboxattr);
+        // Add placeholders
+        $result .= html_writer::start_tag('div', array('class' => 'qtype_hybrid_attachments_placeholders'));
+        $result .= html_writer::tag('h3', get_string('uploadedfiles', 'qtype_hybrid'));
 
-        // Add checkbox label.
-        $labelattr = array('for' => 'studentanswered_chk', 'class' => 'ml-1');
-        $result .= html_writer::tag('label', get_string('chkboxlabel', 'qtype_hybrid'), $labelattr);
+        // Add information for Max Attachments and Required Attachments.
+        $attachment_info = html_writer::start_tag('span', array('class' => 'js-required-files'));
+        $attachment_info .= get_string('requiredfiles', 'qtype_hybrid', $question);
+        $attachment_info .= html_writer::start_tag('i', array('class' => 'icon fa fa-check', 'aria-hidden' => 'true', 'style' => 'display: none'));
+        $attachment_info .= html_writer::end_tag('i');
+        $attachment_info .= html_writer::end_tag('span');
+        $attachment_info .= html_writer::start_tag('span', array('class' => 'js-maximum-files'));
+        $attachment_info .= get_string('maximumfiles', 'qtype_hybrid', $question);
+        $attachment_info .= html_writer::start_tag('i', array('class' => 'icon fa fa-check', 'aria-hidden' => 'true', 'style' => 'display: none'));
+        $attachment_info .= html_writer::end_tag('i');
+        $attachment_info .= html_writer::end_tag('span');
 
-        $result .= html_writer::end_tag('div'); // End .adblock.
-        $result .= html_writer::end_tag('div'); // End .qtype_hybrid_student_answers.
+        $attributes = array(
+            'class' => 'js-attachments-required',
+            'data-attachments-required' => $question->attachmentsrequired
+        );
+
+        $result .= html_writer::tag('div', $attachment_info, $attributes);
+
+        $result .= html_writer::start_tag('div', array('class' => 'qtype_hybrid_attachments_placeholders_wrapper'));
+
+        // Generate the visual placeholder for the images.
+        $required = $index = 0;
+        for ($x = $index; $x < $question->attachments; $x++) {
+            $class = 'qtype_hybrid_placeholder js-edit-file';
+            if ($x <= $question->attachmentsrequired) {
+                if ($required < $question->attachmentsrequired) {
+                    $class .= ' is-required';
+                    $required++;
+                }
+            }
+            $result .= html_writer::tag('div', '', array('class' => $class, 'data-placeholder' => $x));
+        }
+
+        // Ends .qtype_hybrid_attachments_placeholders_wrapper.
+        $result .= html_writer::end_tag('div');
+
+        // Ends .qtype_hybrid_attachments_placeholders.
+        $result .= html_writer::end_tag('div');
+
+        // Ends .qtype_hybrid_attachments.
+        $result .= html_writer::end_tag('div');
+
+        // JS helper to manage the files in the mobile upload module.
+        $this->page->requires->js('/question/type/hybrid/hybrid.js');
+        // QRMOOD-16
 
         return $result;
     }
