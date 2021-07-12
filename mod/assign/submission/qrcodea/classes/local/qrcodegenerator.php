@@ -280,7 +280,7 @@ class qrcodegenerator {
     /**
      * Creates the QR code if it doesn't exist.
      */
-    public function create_image() {
+    public function create_image($url = '') {
         global $CFG;
 
         // Checks if QR code already exists.
@@ -296,10 +296,12 @@ class qrcodegenerator {
         }
 
         // Creates the QR code URL.
-        $url = new moodle_url('/mod/assign/view.php', array(
-            'id' => $this->get_assignmentid(),
-            'action' => 'editsubmission'
-        ));
+        if (empty($url)) {
+            $url = new moodle_url('/mod/assign/view.php', array(
+                'id' => $this->get_assignmentid(),
+                'action' => 'editsubmission'
+            ));
+        }
 
         // Create the QR Code obj.
         $qrcode = new QrCode($url->out(false));
@@ -335,8 +337,8 @@ class qrcodegenerator {
     /**
      * Outputs the QR code.
      */
-    public function output_image() {
-        $this->create_image();
+    public function output_image($url = '') {
+        $this->create_image($url);
 
         // Retuen the svg image content.
         if ($this->get_format() == 1) {
