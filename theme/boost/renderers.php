@@ -58,7 +58,7 @@ class theme_boost_mod_quiz_renderer extends \mod_quiz_renderer {
         $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
         $output .= $this->view_table($quiz, $context, $viewobj);
 
-        if ($viewobj->numattempts >= 1) {
+        if ($viewobj->numattempts == 1) {
             $qrcodeoptions = new stdClass();
 
             // Course id.

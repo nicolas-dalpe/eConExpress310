@@ -78,20 +78,25 @@ M.qtype_hybrid.init = function(Y, options) {
                 } else {
                     Y.one('.js-add-file').show();
                 }
+                
+                // Check if required files are uploaded, if not, remove the Check icon
+                if (response.filecount < requiredFiles._nodes.length) {
+                    Y.one('.js-required-files .icon').hide();
+                    Y.one('.js-required-files').removeClass('is-complete');
+                } else {
+                    Y.one('.js-required-files .icon').show();
+                    Y.one('.js-required-files').addClass('is-complete');
+                }
 
                 // Check if maximum files has been reached, if not, remove the Check icon
                 if (response.filecount !== placeholders._nodes.length) {
                     Y.one('.js-maximum-files .icon').hide();
+                    //Y.one('.js-maximum-files').removeClass('is-complete');
                 } else {
                     Y.one('.js-maximum-files .icon').show();
+                    //Y.one('.js-maximum-files').addClass('is-complete');
                 }
 
-                // Check if required files are uploaded, if not, remove the Check icon
-                if (response.filecount < requiredFiles._nodes.length) {
-                    Y.one('.js-required-files .icon').hide();
-                } else {
-                    Y.one('.js-required-files .icon').show();
-                }
             }
             
         });

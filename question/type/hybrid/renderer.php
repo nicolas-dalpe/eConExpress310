@@ -99,8 +99,8 @@ class qtype_hybrid_renderer extends qtype_renderer {
         $attachment_info .= html_writer::end_tag('span');
         $attachment_info .= html_writer::start_tag('span', array('class' => 'js-maximum-files'));
         $attachment_info .= get_string('maximumfiles', 'qtype_hybrid', $question);
-        $attachment_info .= html_writer::start_tag('i', array('class' => 'icon fa fa-check', 'aria-hidden' => 'true', 'style' => 'display: none'));
-        $attachment_info .= html_writer::end_tag('i');
+        //$attachment_info .= html_writer::start_tag('i', array('class' => 'icon fa fa-check', 'aria-hidden' => 'true', 'style' => 'display: none'));
+        //$attachment_info .= html_writer::end_tag('i');
         $attachment_info .= html_writer::end_tag('span');
 
         $attributes = array(

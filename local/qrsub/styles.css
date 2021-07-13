@@ -73,6 +73,22 @@ body#page-local-qrsub-attempt .que.hybrid div.qtype_hybrid_attachments {
     align-items: center;
 }
 
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-required-files {
+    color: red;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-required-files.is-complete {
+    color: green;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-maximum-files {
+    opacity: 0.6;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-maximum-files.is-complete {
+    opacity: 1;
+}
+
 .que.hybrid .qtype_hybrid_attachments_placeholders_wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -102,6 +118,7 @@ body#page-local-qrsub-attempt .que.hybrid div.qtype_hybrid_attachments {
     max-height: 100%;
     max-width: 100%;
     margin: auto;
+    padding: 10px;
     position: absolute;
     left: 0;
     right: 0;
