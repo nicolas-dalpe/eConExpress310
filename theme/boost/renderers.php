@@ -27,7 +27,11 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/mod/quiz/renderer.php');
 
-use assignsubmission_qrcodea\local\qrcodegenerator;
+// Import the hybrid question info block.
+use local_qrsub\local\qrsub_attempt_info_block;
+
+// Library for QRSub module.
+use local_qrsub\local\qrsub;
 
 /**
  * The renderer for the quiz module.
@@ -58,45 +62,140 @@ class theme_boost_mod_quiz_renderer extends \mod_quiz_renderer {
         $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
         $output .= $this->view_table($quiz, $context, $viewobj);
 
-        if ($viewobj->numattempts == 1) {
-            $qrcodeoptions = new stdClass();
+        // We need at least one attempt object.
+        if (isset($viewobj->attemptobjs[0])) {
 
-            // Course id.
-            $qrcodeoptions->courseid = $COURSE->id;
+            // $quizattemptobj = $viewobj->attemptobjs[0];
 
-            // Get the assignment cmid to link to.
-            $qrcodeoptions->assignmentid = $PAGE->cm->id;
+            // If the first attempt is completed.
 
-            // Build the QR Code.
-            $qrcodegenerator = new qrcodegenerator($qrcodeoptions);
+            // Render the QR Code if there is an hybrid que in the attempt.
+            $qrsub = new qrsub();
+            $hashybrid = $qrsub->has_hybrid_question($viewobj->attemptobjs[0]);
+            if ($hashybrid) {
+                $a = quiz_attempt::IN_PROGRESS;
+                $b = quiz_attempt::FINISHED;
+                if (
+                    ($viewobj->attemptobjs[0]->get_attempt_number() == 1 && $viewobj->attemptobjs[0]->get_state() == quiz_attempt::FINISHED) ||
+                    ($viewobj->attemptobjs[0]->get_attempt_number() == 2 && $viewobj->attemptobjs[0]->get_state() == quiz_attempt::IN_PROGRESS)
 
-            // Generate the QR Code URL.
-            $url = new moodle_url('/local/qrsub/startqrsub.php', array(
-                'cmid' => $cm->id
-            ));
-
-            // Output the QR Code image.
-            $qrcode = $qrcodegenerator->output_image($url);
-
-            // Prepare the data for the template.
-            $tpldata = new stdClass();
-            $tpldata->legend = new lang_string('instruction_qrcode', 'assignsubmission_qrcodea');
-
-            // Set the QR Code format.
-            if ($qrcodegenerator->get_format() == 1) {
-                $tpldata->qrcodesvg = $qrcode;
-            } else {
-                $tpldata->qrcodepng = $qrcode;
+                ) {
+                    $output .= $qrsub->get_qrcode($cm);
+                }
             }
-
-            // Render the QR Code.
-            $renderable = new \assignsubmission_qrcodea\output\qrcode_page($tpldata);
-            $qrcodea_renderer = $PAGE->get_renderer('assignsubmission_qrcodea');
-            $output .= $qrcodea_renderer->render($renderable);
         }
 
         $output .= $this->view_result_info($quiz, $context, $cm, $viewobj);
         $output .= $this->box($this->view_page_buttons($viewobj), 'quizattempt');
         return $output;
+    }
+
+    /**
+     * Generate a brief textual desciption of the current state of an attempt.
+     * @param quiz_attempt $attemptobj the attempt
+     * @param int $timenow the time to use as 'now'.
+     * @return string the appropriate lang string to describe the state.
+     */
+    public function attempt_state($attemptobj) {
+        global $DB;
+        switch ($attemptobj->get_state()) {
+            case quiz_attempt::IN_PROGRESS:
+                // Contains the question and their completion status.
+                $questionstatus = $status = '';
+
+                // Load the questions in the attempt object.
+                $attemptobj->load_questions();
+
+                // Get the hybrid question and their status.
+                $hybridinfo = new qrsub_attempt_info_block($attemptobj);
+                $hybrids = $hybridinfo->get_questions();
+
+                // Display the question status only if we have hybrid question.
+                if (count($hybrids) > 0) {
+
+                    $this->page->requires->js_call_amd(
+                        'local_qrsub/attempt_status',
+                        'init',
+                        array('IN_PROGRESS', $attemptobj->get_attemptid(), $attemptobj->get_cm())
+                    );
+
+                    $status = new lang_string('hybrid_upload', 'local_qrsub');
+
+                    // Display the question.
+                    foreach ($hybrids as $hybrid) {
+                        $questionstatus .= html_writer::tag(
+                            'div',
+                            $hybrid['name'] . ' ' . $hybrid['complete']->get_identifier(),
+                            array('class' => $hybrid['complete_css_class'])
+                        );
+                    }
+
+                    $status .= html_writer::tag(
+                        'div',
+                        $questionstatus,
+                        array('class' => 'hybrid_status')
+                    );
+                } else {
+                    $status .= new lang_string('stateinprogress', 'quiz');
+                }
+
+                return $status;
+
+            case quiz_attempt::OVERDUE:
+                return get_string('stateoverdue', 'quiz') . html_writer::tag(
+                    'span',
+                    get_string(
+                        'stateoverduedetails',
+                        'quiz',
+                        userdate($attemptobj->get_due_date())
+                    ),
+                    array('class' => 'statedetails')
+                );
+
+            case quiz_attempt::FINISHED:
+
+                $status = '';
+
+                // Load the questions in the attempt object.
+                $attemptobj->load_questions();
+
+                // Get the hybrid question and their status.
+                $hybridinfo = new qrsub_attempt_info_block($attemptobj);
+                $hybrids = $hybridinfo->get_questions();
+
+                if ($attemptobj->get_attempt_number() == 1 && count($hybrids) > 0) {
+
+                    $this->page->requires->js_call_amd(
+                        'local_qrsub/attempt_status',
+                        'init',
+                        array('FINISHED', $attemptobj->get_attemptid(), $attemptobj->get_cm())
+                    );
+
+                    $status .= get_string('non_hybrid_finished', 'local_qrsub') . html_writer::tag(
+                        'span',
+                        get_string(
+                            'statefinisheddetails',
+                            'quiz',
+                            userdate($attemptobj->get_submitted_date())
+                        ),
+                        array('class' => 'statedetails')
+                    );
+                } else {
+                    $status .= get_string('statefinished', 'quiz') . html_writer::tag(
+                        'span',
+                        get_string(
+                            'statefinisheddetails',
+                            'quiz',
+                            userdate($attemptobj->get_submitted_date())
+                        ),
+                        array('class' => 'statedetails')
+                    );
+                }
+
+                return $status;
+
+            case quiz_attempt::ABANDONED:
+                return get_string('stateabandoned', 'quiz');
+        }
     }
 }
