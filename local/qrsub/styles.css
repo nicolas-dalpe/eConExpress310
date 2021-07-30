@@ -1,0 +1,276 @@
+/* .que.hybrid textarea.qtype_hybrid_response {
+    width: 100%;
+}
+
+.que.hybrid textarea.qtype_hybrid_response.qtype_hybrid_plain {
+    white-space: pre-wrap;
+    font: inherit;
+}
+
+.que.hybrid textarea.qtype_hybrid_plain_response.qtype_hybrid_plain_monospaced {
+    white-space: pre;
+    font-family: Andale Mono, Monaco, Courier New, DejaVu Sans Mono, monospace;
+}
+
+.que.hybrid .qtype_hybrid_plain_response {
+    min-height: 3em;
+}
+
+.que.hybrid .qtype_hybrid_plain_response.readonly {
+    background-color: white;
+}
+
+.que.hybrid div.qtype_hybrid_plain_response textarea {
+    width: 100%;
+} */
+
+/* Hide the text answer. */
+body#page-local-qrsub-attempt .que.hybrid div.qtype_hybrid_builtin_answers .answer,
+
+/* Hide the activity navigation block below the question. */
+body#page-local-qrsub-attempt div.activity-navigation,
+
+/* Hide the block region in the question. */
+body#page-local-qrsub-attempt section[data-region="blocks-column"],
+
+/* Hide the question info box so we don't have to mess with the question engine renderer. */
+body#page-local-qrsub-attempt div.info {
+    display: none;
+}
+
+/* Remove the margin-right that was holding the space for question info box. */
+body#page-local-qrsub-attempt .que .content {
+    margin: 0;
+}
+
+/* Restore the float right on the next button that was added on #page-mod-quiz-attempt */
+body#page-local-qrsub-attempt .submitbtns .mod_quiz-next-nav {
+    float: right;
+}
+
+/*************************/
+/*   Customize display   */
+/*************************/
+body#page-mod-quiz-view figure {
+    text-align: center;
+    width: 100%;
+}
+
+body#page-local-qrsub-attempt .que.hybrid .formulation {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Show the attachment in the QRSub attempt page. */
+body#page-local-qrsub-attempt .que.hybrid div.qtype_hybrid_attachments {
+    display: block;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders {
+    border-top: 1px solid #666;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders span {
+    display: flex;
+    align-items: center;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-required-files {
+    color: red;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-required-files.is-complete {
+    color: green;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-maximum-files {
+    opacity: 0.6;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .js-maximum-files.is-complete {
+    opacity: 1;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .qtype_hybrid_placeholder {
+    border: 1px dashed #666;
+    position: relative;
+    margin: 10px;
+    text-align: center;
+    width: calc(100% - 20px);
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .qtype_hybrid_placeholder:hover {
+    cursor: pointer;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .qtype_hybrid_placeholder:before {
+    top: 0;
+    content: '';
+    float: left;
+    padding-top: 100%;
+    bottom: 0;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .qtype_hybrid_placeholder.js-add-file:after {
+    position: absolute;
+    content: 'Upload file';
+    font-size: 18px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .qtype_hybrid_placeholder.js-add-file .icon {
+    position: absolute;
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+    top: calc(50% - 28px);
+    left: calc(50% - 28px);
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .qtype_hybrid_placeholder img {
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    padding: 0;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    top: 10px;
+}
+
+.que.hybrid .qtype_hybrid_attachments_placeholders .qtype_hybrid_placeholder.is-required {
+    border-color: #ff0606;
+}
+
+.que.hybrid div.qtype_hybrid_builtin_answers .attachments {
+    /* margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #666; */
+}
+
+.que.hybrid .qtype_hybrid_builtin_answers .filemanager {
+    display: none;
+}
+
+.que.hybrid .qtype_hybrid_builtin_answers .card,
+.que.hybrid .qtype_hybrid_builtin_answers .filepicker-filelist,
+.que.hybrid .qtype_hybrid_builtin_answers .filemanager-container {
+    background: none;
+    border: none;
+}
+
+.que.hybrid .qtype_hybrid_builtin_answers .filemanager-container {
+    background: #fff;
+}
+
+.que.hybrid .qtype_hybrid_builtin_answers .filemanager-toolbar {
+    padding: 0;
+}
+
+.que.hybrid .qtype_hybrid_builtin_answers .filepicker-filelist .filepicker-container,
+.que.hybrid .qtype_hybrid_builtin_answers .filemanager.fm-noitems .fm-empty-container {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.que.hybrid .qtype_hybrid_builtin_answers .fp-viewbar,
+.que.hybrid .qtype_hybrid_builtin_answers .fp-pathbar,
+.que.hybrid .qtype_hybrid_builtin_answers .fp-btn-download,
+.que.hybrid .qtype_hybrid_builtin_answers .fp-restrictions {
+    display: none;
+}
+
+.que.hybrid .filemanager .fp-content {
+    max-height: inherit;
+    overflow: visible;
+}
+
+/*******************************/
+/*   File Manager view icones  */
+/*******************************/
+.fp-iconview .fp-file {
+    width: calc(50% - 20px);
+}
+
+.fp-iconview .fp-thumbnail {
+    width: 100% !important;
+    height: auto !important;
+    border: none !important;
+}
+
+.fp-content .fp-iconview .fp-thumbnail img {
+    padding: 0;
+    max-width: inherit !important;
+    max-height: inherit !important;
+    width: 100%;
+    height: auto;
+    border: 1px dashed #ddd;
+}
+
+.fp-content .fp-iconview .fp-filename-field,
+.fp-content .fp-iconview .fp-filename-field .fp-filename {
+    width: 100% !important;
+}
+
+/*******************/
+/*   Upload Modal  */
+/*******************/
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-repo-area {
+    background: none;
+    padding: 0 !important;
+}
+
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-repo-area .fp-repo a {
+    margin: 0;
+}
+
+/* Hide unwanted options in Upload modal */
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-repo:nth-child(1n),
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-repo:nth-child(2n),
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-repo:nth-child(3n),
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-repo:nth-child(5n),
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-repo:nth-child(6n),
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-navbar,
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-saveas,
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-setauthor,
+body#page-local-qrsub-attempt .moodle-dialogue.filepicker .file-picker .fp-setlicense,
+body#page-local-qrsub-attempt .moodle-dialogue .file-picker .fp-login-form,
+body#page-local-qrsub-attempt .moodle-dialogue .file-picker .fp-content-error {
+    display: none;
+}
+
+body#page-local-qrsub-attempt ue.filepicker .file-picker .fp-repo:nth-child(4n) {
+    display: block;
+}
+
+body#page-local-qrsub-attempt .filepicker .file-picker .fp-content {
+    height: auto;
+    border: none;
+}
+
+/*******************/
+/*   Edit Modal  */
+/*******************/
+body#page-local-qrsub-attempt .moodle-dialogue .fp-select .fp-author,
+body#page-local-qrsub-attempt .moodle-dialogue .fp-select .fp-license,
+body#page-local-qrsub-attempt .moodle-dialogue .fp-select .fp-path {
+    display: none;
+}
