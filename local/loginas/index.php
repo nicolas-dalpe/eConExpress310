@@ -64,7 +64,7 @@ $PAGE->set_context($coursecontext);
 echo $OUTPUT->header();
 
 $select = $DB->sql_like('email', ':email', false);
-$params = ['email' => 'moodle_test_%'];
+$params = ['email' => '%@K1.ca%'];
 
 $users = $DB->get_records_select('user', $select, $params, 'username', 'id, username');
 
