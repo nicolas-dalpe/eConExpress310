@@ -58,24 +58,24 @@ class qtype_hybrid_edit_form extends question_edit_form {
         // Input box size.
         $mform->addElement('select', 'responsefieldlines',
                 get_string('responsefieldlines', 'qtype_hybrid'), $qtype->response_sizes());
-        $mform->setDefault('responsefieldlines', 1);
+        $mform->setDefault('responsefieldlines', 5);
         $mform->disabledIf('responsefieldlines', 'responseformat', 'eq', 'noinline');
 
         // Allow attachments.
         $mform->addElement('select', 'attachments',
                 get_string('allowattachments', 'qtype_hybrid'), $qtype->attachment_options());
-        $mform->setDefault('attachments', 0);
+        $mform->setDefault('attachments', '-1');
 
         // Require attachments.
         $mform->addElement('select', 'attachmentsrequired',
                 get_string('attachmentsrequired', 'qtype_hybrid'), $qtype->attachments_required_options());
-        $mform->setDefault('attachmentsrequired', 0);
         $mform->addHelpButton('attachmentsrequired', 'attachmentsrequired', 'qtype_hybrid');
         $mform->disabledIf('attachmentsrequired', 'attachments', 'eq', 0);
 
         // Accepted file types.
         $mform->addElement('filetypes', 'filetypeslist', get_string('acceptedfiletypes', 'qtype_hybrid'));
         $mform->addHelpButton('filetypeslist', 'acceptedfiletypes', 'qtype_hybrid');
+        $mform->setDefault('filetypeslist', 'web_image');
         $mform->disabledIf('filetypeslist', 'attachments', 'eq', 0);
 
         $mform->addElement('header', 'responsetemplateheader', get_string('responsetemplateheader', 'qtype_hybrid'));
